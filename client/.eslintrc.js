@@ -1,4 +1,4 @@
-{
+module.exports = {
     "env": {
         "browser": true,
         "es2021": true
@@ -19,7 +19,8 @@
     "parserOptions": {
         "ecmaVersion": "latest",
         "sourceType": "module",
-        "project": "./client/tsconfig.json"
+        "tsconfigRootDir":__dirname,
+        "project": "./tsconfig.json"
     },
     "plugins": [
         "react",
@@ -55,7 +56,8 @@
         "react-hooks/rules-of-hooks":"off",
         "@typescript-eslint/no-unused-expressions":"off",
         "prefer-promise-reject-errors":"off",
-        "@typescript-eslint/no-explicit-any":"off"
+        "@typescript-eslint/no-explicit-any":"off",
+        "@typescript-eslint/no-unused-vars":"error"
     },
     "settings": {
         "import/resolver": {
@@ -63,5 +65,5 @@
             "alwaysTryTypes": true
           }
     }
-}
+    }
 }
