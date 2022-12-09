@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { flexMixin } from "./mixins";
 
 export const Button = styled.div`
   border-radius: ${(props) => props.theme.borderRadius};
@@ -7,10 +8,8 @@ export const Button = styled.div`
   padding: 8px 30px;
   color: ${(props) => props.theme.colors.white};
   background-color: ${(props) => props.theme.colors.purpleColor};
-  display: flex;
-  flex-direction: column;
+  ${flexMixin({ flexDirection: "column", justifyContent: "center" })}
   align-self: center;
-  justify-content: center;
   cursor: pointer;
   font-size: 0.9rem;
 `;
