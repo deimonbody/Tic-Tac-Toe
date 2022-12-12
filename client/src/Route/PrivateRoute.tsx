@@ -1,5 +1,6 @@
-import { PATHES } from "@route/common/enum";
 import React from "react";
+
+import { PATHES } from "@route/common/enum";
 import { Navigate } from "react-router-dom";
 
 interface IProps {

@@ -1,5 +1,6 @@
-import { createAsyncThunk, createAction } from "@reduxjs/toolkit";
+import { createAction, createAsyncThunk } from "@reduxjs/toolkit";
 import { loginUser } from "@route/helper/api.helper";
+
 import { ISetUserProps, UserActions } from "./common";
 
 export const setUser = createAsyncThunk(

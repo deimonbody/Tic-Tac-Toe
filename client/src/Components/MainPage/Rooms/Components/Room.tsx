@@ -1,11 +1,13 @@
+import React from "react";
+
+import { RoomStatusEnum } from "@route/common/enum";
 import { IRoom } from "@route/common/interfaces";
-import { Button } from "@route/Components/Styled/Common/Button";
 import {
+  Button,
   RoomStatus,
   RoomTitle,
   RoomWrapper,
-} from "@route/Components/Styled/Room";
-import React from "react";
+} from "@route/Components/Styled";
 
 interface IProps {
   room: IRoom;
@@ -15,7 +17,7 @@ const Room: React.FC<IProps> = ({ room }) => {
     <RoomWrapper>
       <RoomTitle>{room.title}</RoomTitle>
       <RoomStatus>
-        {room.status === "Waiting"
+        {room.status === RoomStatusEnum.WAITING
           ? `Waiting users:${room.users.length}/2`
           : "Game has been started"}
       </RoomStatus>

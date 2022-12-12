@@ -1,12 +1,14 @@
-import { IButtonAction } from "@route/common/interfaces";
 import React from "react";
-import { Button } from "../Styled/Common/Button";
+
+import { IButtonAction } from "@route/common/interfaces";
+
 import {
+  Button,
+  ModalContainer,
+  ModalControl,
   ModalTitle,
   ModalWrapper,
-  ModalControl,
-  ModalContainer,
-} from "../Styled/Modal";
+} from "../Styled";
 
 interface IProps {
   text: string;

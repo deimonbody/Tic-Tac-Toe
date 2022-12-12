@@ -1,6 +1,7 @@
-import { configureStore, combineReducers } from "@reduxjs/toolkit";
-import { userReducer } from "./user";
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
+
 import { roomsReducer } from "./rooms";
+import { userReducer } from "./user";
 
 export const reducer = combineReducers({
   userReducer,

@@ -1,6 +1,8 @@
-import { RoomsWraper } from "@route/Components/Styled/Rooms";
-import { useAppSelector } from "@route/store/hooks";
 import React from "react";
+
+import { RoomsWraper } from "@route/Components/Styled";
+import { useAppSelector } from "@route/store/hooks";
+
 import Room from "./Components/Room";
 
 const Rooms = () => {

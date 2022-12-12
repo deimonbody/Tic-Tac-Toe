@@ -58,7 +58,36 @@ module.exports = {
         "prefer-promise-reject-errors":"off",
         "@typescript-eslint/no-explicit-any":"off",
         "@typescript-eslint/no-unused-vars":"error",
-        "no-param-reassign":"off"
+        "no-param-reassign":"off",
+        'sort-imports': ['error', {ignoreCase: true, ignoreDeclarationSort: true}],
+    // this is for sorting imports
+    'import/order': [
+      'error',
+      {
+        groups: [
+          ['external', 'builtin'],
+          'internal',
+          ['sibling', 'parent'],
+          'index',
+        ],
+        pathGroups: [
+          {
+            pattern: '@(react|react-native)',
+            group: 'external',
+            position: 'before',
+          },
+          {
+            pattern: '@src/**',
+            group: 'internal',
+          },
+        ],
+        pathGroupsExcludedImportTypes: ['internal', 'react'],
+        'newlines-between': 'always',
+        alphabetize: {
+          order: 'asc',
+          caseInsensitive: true,
+        },
+    }],
     },
     "settings": {
         "import/resolver": {

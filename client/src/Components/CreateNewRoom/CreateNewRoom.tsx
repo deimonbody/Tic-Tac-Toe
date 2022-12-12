@@ -1,14 +1,15 @@
 import React, { useState } from "react";
+
+import { joiResolver } from "@hookform/resolvers/joi";
+import { createNewRoomSchema, socket } from "@route/common";
+import { ICRANewRoom } from "@route/common/interfaces";
+import { useAppSelector } from "@route/store/hooks";
 import { createPortal } from "react-dom";
 import { useForm } from "react-hook-form";
-import { joiResolver } from "@hookform/resolvers/joi";
-import { createNewRoomSchema } from "@route/common/schemas";
-import { ICRANewRoom } from "@route/common/interfaces";
-import { socket } from "@route/common/variables";
-import { useAppSelector } from "@route/store/hooks";
+
 import CreateNewRoomBtn from "../MainPage/Control/Components/CreateNewRoomBtn";
 import Modal from "../Modal/Modal";
-import { CRAInput } from "../Styled/Control";
+import { CRAInput } from "../Styled";
 
 interface IProps {
   containerTarget: HTMLElement;

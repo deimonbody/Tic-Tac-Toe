@@ -1,9 +1,9 @@
-import { useAppDispatch, useAppSelector } from "@route/store/hooks";
 import React, { useEffect } from "react";
+
+import { useAppDispatch, useAppSelector } from "@route/store/hooks";
 import { loadRoomsAction, setRoomsLoading } from "@route/store/rooms/actions";
-import { Wrapper } from "../Styled/Common/Wrapper";
-import { Header } from "../Styled/Header";
-import { UserName } from "../Styled/UserName";
+
+import { Header, UserName, Wrapper } from "../Styled";
 import Control from "./Control/Control";
 import Rooms from "./Rooms/Rooms";
 

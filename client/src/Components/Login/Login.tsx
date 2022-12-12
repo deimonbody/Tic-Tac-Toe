@@ -1,16 +1,16 @@
 import React, { useEffect } from "react";
-import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
-import { useAppDispatch } from "@route/store/hooks";
-import { useAuth } from "@route/hooks/isAuth";
-import { setUser } from "@route/store/user/actions";
-import { PATHES } from "@route/common/enum";
-import { useForm } from "react-hook-form";
+
 import { joiResolver } from "@hookform/resolvers/joi";
-import { loginSchema } from "@route/common/schemas";
+import { loginSchema, PATHES } from "@route/common";
 import { ILoginFields } from "@route/common/interfaces";
-import { LoginInput, LoginTitle, LoginWrapper } from "../Styled/Login";
-import { Button } from "../Styled/Common/Button";
+import { useAuth } from "@route/hooks/isAuth";
+import { useAppDispatch } from "@route/store/hooks";
+import { setUser } from "@route/store/user/actions";
+import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+
+import { Button, LoginInput, LoginTitle, LoginWrapper } from "../Styled";
 
 const Login = () => {
   const dispatch = useAppDispatch();

@@ -1,6 +1,7 @@
 import { ActionReducerMapBuilder } from "@reduxjs/toolkit";
-import { IInitialState } from "./common";
+
 import * as roomsActions from "./actions";
+import { IInitialState } from "./common";
 
 export const roomsReducer = (
   builder: ActionReducerMapBuilder<IInitialState>,
