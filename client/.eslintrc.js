@@ -57,7 +57,8 @@ module.exports = {
         "@typescript-eslint/no-unused-expressions":"off",
         "prefer-promise-reject-errors":"off",
         "@typescript-eslint/no-explicit-any":"off",
-        "@typescript-eslint/no-unused-vars":"error"
+        "@typescript-eslint/no-unused-vars":"error",
+        "no-param-reassign":"off"
     },
     "settings": {
         "import/resolver": {

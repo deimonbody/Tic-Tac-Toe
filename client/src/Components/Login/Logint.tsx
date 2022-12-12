@@ -1,15 +1,36 @@
-import React, { useState } from "react";
-import { loginUser } from "../../helper/api.helper";
-import { Button } from "../Styled/Common/Button";
-
+import React, { useEffect, useState } from "react";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import { useAppDispatch } from "@route/store/hooks";
+import { useAuth } from "@route/hooks/isAuth";
+import { setUser } from "@route/store/user/actions";
+import { PATHES } from "@route/common/enum";
 import { LoginInputStyled, LoginTitle, LoginWrapper } from "../Styled/Login";
+import { Button } from "../Styled/Common/Button";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const dispatch = useAppDispatch();
+  const isAuth = useAuth();
+  const navigate = useNavigate();
+
   const loginHandler = () => {
-    loginUser({ email, password });
+    dispatch(setUser({ email, password }))
+      .unwrap()
+      .then(() => {
+        toast.success("Succes access");
+        navigate(PATHES.MAIN_PAGE);
+      })
+      .catch((err) => toast.error(err.message));
   };
+
+  useEffect(() => {
+    if (isAuth) {
+      navigate(PATHES.MAIN_PAGE);
+    }
+  }, []);
+
   return (
     <LoginWrapper>
       <LoginTitle>Login</LoginTitle>
