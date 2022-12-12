@@ -1,5 +1,5 @@
 import { PATHES } from "@route/common/enum";
-import Login from "@route/Components/Login/Logint";
+import Login from "@route/Components/Login/Login";
 import { MainPage } from "@route/Components/MainPage/MainPage";
 import { useAuth } from "@route/hooks/isAuth";
 import React from "react";

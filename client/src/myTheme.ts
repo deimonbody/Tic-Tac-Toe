@@ -5,7 +5,7 @@ const myTheme: DefaultTheme = {
 
   colors: {
     black: "#000000",
-    purpleColor: "#9461FF",
+    purpleColor: "#7b42f3",
     white: "#FFFFFF",
     grayText: "#C0BFBF",
   },
