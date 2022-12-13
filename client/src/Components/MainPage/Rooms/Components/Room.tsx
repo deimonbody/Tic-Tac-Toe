@@ -1,5 +1,6 @@
 import React from "react";
 
+// import { socket } from "@route/common";
 import { RoomStatusEnum } from "@route/common/enum";
 import { IRoom } from "@route/common/interfaces";
 import {
@@ -8,11 +9,17 @@ import {
   RoomTitle,
   RoomWrapper,
 } from "@route/Components/Styled";
+import { socket } from "@route/common";
+import { useAppSelector } from "@route/store/hooks";
 
 interface IProps {
   room: IRoom;
 }
 const Room: React.FC<IProps> = ({ room }) => {
+  const { user } = useAppSelector((store) => store.userReducer);
+  const clickHanlder = () => {
+    socket.emit("join-to-room", JSON.stringify({ roomId: room.id, user }));
+  };
   return (
     <RoomWrapper>
       <RoomTitle>{room.title}</RoomTitle>
@@ -21,7 +28,7 @@ const Room: React.FC<IProps> = ({ room }) => {
           ? `Waiting users:${room.users.length}/2`
           : "Game has been started"}
       </RoomStatus>
-      <Button>Join</Button>
+      <Button onClick={clickHanlder}>Join</Button>
     </RoomWrapper>
   );
 };

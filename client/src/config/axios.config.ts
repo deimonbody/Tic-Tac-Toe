@@ -1,6 +1,5 @@
-import axios, { CreateAxiosDefaults } from "axios";
-
 import { BASE_URL } from "@route/common/variables";
+import axios, { CreateAxiosDefaults } from "axios";
 
 export const axiosConfig = {
   baseURL: BASE_URL,

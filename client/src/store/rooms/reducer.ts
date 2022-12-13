@@ -16,5 +16,8 @@ export const roomsReducer = (
     })
     .addCase(roomsActions.addNewRoom, (state, actions) => {
       state.rooms.push(actions.payload);
+    })
+    .addCase(roomsActions.updateRoomsList, (state, actions) => {
+      state.rooms = actions.payload;
     });
 };

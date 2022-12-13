@@ -1,7 +1,7 @@
 import React from "react";
+import { Navigate } from "react-router-dom";
 
 import { PATHES } from "@route/common/enum";
-import { Navigate } from "react-router-dom";
 
 interface IProps {
   children: JSX.Element;
