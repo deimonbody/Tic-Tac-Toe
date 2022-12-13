@@ -6,6 +6,7 @@ const fs = require("fs");
 const cors=require("cors");
 const server = http.Server(app).listen(9999,()=>console.log('server has been started'));
 const io = socketIo(server);
+const uuidv4 = require('uuid').v4;
 
 const rooms = [];
 const games = [];
@@ -17,7 +18,7 @@ const users = [{
 },{
     'name':"Oleg",
     "email":"123@gmail.com",
-    "password":"123",
+    "password":"123456",
     "id":"2"
 },
 {
@@ -51,7 +52,21 @@ app.post('/user',(req,res)=>{
         })
     }
 })
-
+app.get("/rooms",(req,res)=>{
+    res.send({rooms})
+})
 io.on('connection',(socket)=>{
-    console.log("User conected ",socket.id);
+    console.log('user connected',socket.id)
+    socket.on("create-new-room",(data)=>{
+        const {user,roomName} = JSON.parse(data);
+        const newRoom = {
+            id:uuidv4(),
+            title: roomName,
+            status: 'Waiting',
+            users: [{...user,role:0}],
+            game: []
+        };
+        rooms.push(newRoom);
+        io.emit("add-new-room",JSON.stringify({newRoom}))
+    })
 })

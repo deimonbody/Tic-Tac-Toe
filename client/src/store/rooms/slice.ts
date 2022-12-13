@@ -1,23 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 import { IInitialState } from "./common";
-import { userReducer } from "./reducer";
+import { roomsReducer } from "./reducer";
 
 const initialState: IInitialState = {
-  user: {
-    name: null,
-    password: null,
-    emai: null,
-    id: null,
-  },
+  rooms: [],
   isLoading: false,
 };
 
 const { reducer } = createSlice({
-  name: "userReducer",
+  name: "roomsReducer",
   initialState,
   reducers: {},
-  extraReducers: userReducer,
+  extraReducers: roomsReducer,
 });
 
 export { reducer };
