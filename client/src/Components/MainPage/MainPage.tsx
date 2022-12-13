@@ -5,6 +5,7 @@ import { loadRoomsAction, setRoomsLoading } from "@route/store/rooms/actions";
 
 import { Header, UserName, Wrapper } from "../Styled";
 import Control from "./Control/Control";
+
 import Rooms from "./Rooms/Rooms";
 
 export const MainPage = () => {

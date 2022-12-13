@@ -8,8 +8,7 @@ const server = http.Server(app).listen(9999,()=>console.log('server has been sta
 const io = socketIo(server);
 const uuidv4 = require('uuid').v4;
 
-const rooms = [];
-const games = [];
+let rooms = [];
 const users = [{
     'name':"Dima",
     "email":"dima.pavlov0311@gmail.com",
@@ -24,7 +23,7 @@ const users = [{
 {
     'name':"TestUser",
     "email":"1234@gmail.com",
-    "password":"1234",
+    "password":"12345",
     "id":"3"
 }];
 
@@ -33,7 +32,6 @@ const corsOptions ={
    credentials:true,       
    optionSuccessStatus:200,
 }
-
 app.use(cors(corsOptions));
 app.use(express.json());
 
@@ -67,6 +65,44 @@ io.on('connection',(socket)=>{
             game: []
         };
         rooms.push(newRoom);
+        socket.join(newRoom.id);
         io.emit("add-new-room",JSON.stringify({newRoom}))
+        socket.emit("current-user-joined-to-room",JSON.stringify({room:newRoom}));
+    })
+    socket.on("join-to-room",(data)=>{
+        const { roomId,user } = JSON.parse(data);
+        socket.join(roomId);
+        rooms = rooms.map((room)=>{
+            if(room.id === roomId) {
+                // 0 - нолик 1-хрестик ,якщо останній юзер,який в цій кімнаті - нолик - тоді новий буде хрестиком,й навпаки
+                if(room.users.length){
+                    const role = room.users[room.users.length-1] === 0 ? 1 : 0; 
+                    room.users.push({...user,role});
+                }else{
+                    room.users.push({...user,role:0});
+                }
+                if(room.users.length === 2){
+                    room.status = 'InProcess';
+                }
+                io.in(roomId).emit("new-user-joined-to-room",JSON.stringify({room}))
+            }
+            return room;
+        })
+        io.emit("update-room-list",JSON.stringify({rooms}));
+    })
+    socket.on("leave-room",(data)=>{
+        const { roomId,user } = JSON.parse(data);
+        socket.leave(roomId);
+        rooms = rooms.map((room)=>{
+            if(room.id === roomId){
+                const findUserIndex = room.users.findIndex((roomUser)=>roomUser.id === user.id);
+                room.users.splice(findUserIndex,1);
+                room.game = [];
+                room.status = "Waiting";
+                io.in(roomId).emit("user-leaved-the-room",JSON.stringify({room}));
+            }
+            return room
+        })
+        io.emit("update-room-list",JSON.stringify({rooms}));
     })
 })

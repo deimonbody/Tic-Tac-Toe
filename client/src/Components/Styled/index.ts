@@ -18,6 +18,15 @@ import {
 import { RoomStatus, RoomTitle, RoomWrapper } from "./Room";
 import { RoomsWraper } from "./Rooms";
 import { UserName } from "./UserName";
+import {
+  GameBlock,
+  GameFieldStyled,
+  GameFieldWrapper,
+  GameHeader,
+  GameTitle,
+  GameUser,
+  Versus,
+} from "./Game";
 
 export {
   Button,
@@ -40,4 +49,11 @@ export {
   RoomWrapper,
   RoomsWraper,
   UserName,
+  GameHeader,
+  GameUser,
+  Versus,
+  GameTitle,
+  GameFieldStyled,
+  GameBlock,
+  GameFieldWrapper,
 };

@@ -18,4 +18,12 @@ export const addNewRoom = createAction(RoomActions.ADD_NEW_ROOM, (data) => {
   const { newRoom } = data;
   return { payload: newRoom };
 });
+export const updateRoomsList = createAction(
+  RoomActions.UPDATE_ROOMS_LIST,
+  (data) => {
+    const { rooms } = data;
+    console.log(rooms);
+    return { payload: rooms };
+  },
+);
 export const setRoomsLoading = createAction(RoomActions.SET_ROOMS_LOADING);

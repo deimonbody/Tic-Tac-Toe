@@ -1,3 +1,4 @@
+import { RoomStatusEnum } from "./enum";
 import { Control } from "react-hook-form";
 
 export interface IFlexMixin {
@@ -17,13 +18,6 @@ export interface IUserGame extends IUser {
 
 export interface IWrapper {
   children: JSX.Element | JSX.Element[];
-}
-export interface IRoom {
-  id: string;
-  title: string;
-  status: "Waiting" | "InProcess";
-  users: IUserGame[];
-  game: [];
 }
 
 export interface ILoginFields {
@@ -53,4 +47,22 @@ export interface ILoginUser {
 export interface IButtonAction {
   btnText: string;
   action: () => void;
+}
+export interface IAction {
+  id: string;
+  roomID: string;
+  userID: string;
+  userRole: 0 | 1;
+  cellNum: number;
+}
+export interface IRoom {
+  id: string;
+  title: string;
+  status: RoomStatusEnum;
+  users: IUserGame[];
+  game: IGame[];
+}
+
+export interface IGame {
+  action: IAction;
 }

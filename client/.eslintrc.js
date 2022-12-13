@@ -14,6 +14,7 @@ module.exports = {
         "react-app"
     ],
     "overrides": [
+       
     ],
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
@@ -25,7 +26,7 @@ module.exports = {
     "plugins": [
         "react",
         "@typescript-eslint",
-        "prettier"
+        "prettier",
     ],
     "rules": {
         "react/jsx-props-no-spreading": "off",
@@ -59,35 +60,6 @@ module.exports = {
         "@typescript-eslint/no-explicit-any":"off",
         "@typescript-eslint/no-unused-vars":"error",
         "no-param-reassign":"off",
-        'sort-imports': ['error', {ignoreCase: true, ignoreDeclarationSort: true}],
-    // this is for sorting imports
-    'import/order': [
-      'error',
-      {
-        groups: [
-          ['external', 'builtin'],
-          'internal',
-          ['sibling', 'parent'],
-          'index',
-        ],
-        pathGroups: [
-          {
-            pattern: '@(react|react-native)',
-            group: 'external',
-            position: 'before',
-          },
-          {
-            pattern: '@src/**',
-            group: 'internal',
-          },
-        ],
-        pathGroupsExcludedImportTypes: ['internal', 'react'],
-        'newlines-between': 'always',
-        alphabetize: {
-          order: 'asc',
-          caseInsensitive: true,
-        },
-    }],
     },
     "settings": {
         "import/resolver": {
