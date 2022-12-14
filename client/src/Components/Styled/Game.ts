@@ -1,3 +1,4 @@
+import { IGameUserRole } from "@route/common/interfaces";
 import styled from "styled-components";
 import { flexMixin } from "./Common/mixins";
 
@@ -38,11 +39,39 @@ export const GameBlock = styled.div`
   height: 100px;
   background-color: ${(props) => props.theme.colors.white};
   border: 1px solid black;
+  position: relative;
+  cursor: pointer;
 `;
 export const GameFieldWrapper = styled.div`
   ${flexMixin({
-    flexDirection: "row",
+    flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
   })};
+`;
+export const GameCellValue = styled.p<IGameUserRole>`
+  font-size: 2rem;
+  font-family: ${(props) => props.theme.fonts.bold};
+  color: ${(props) =>
+    props.userRole === 0
+      ? props.theme.colors.zeroColor
+      : props.theme.colors.xColor};
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+`;
+export const GameTurn = styled.p<IGameUserRole>`
+  padding: 40px 0;
+  font-size: 1.3rem;
+  font-family: ${(props) => props.theme.fonts.bold};
+  color: ${(props) =>
+    props.userRole === 0
+      ? props.theme.colors.zeroColor
+      : props.theme.colors.xColor};
+`;
+export const GameEnded = styled.p`
+  padding: 50px 0;
+  font-size: 1.3rem;
+  font-family: ${(props) => props.theme.fonts.bold};
 `;

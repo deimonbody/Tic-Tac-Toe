@@ -26,6 +26,8 @@ import {
   GameTitle,
   GameUser,
   Versus,
+  GameTurn,
+  GameCellValue,
 } from "./Game";
 
 export {
@@ -56,4 +58,6 @@ export {
   GameFieldStyled,
   GameBlock,
   GameFieldWrapper,
+  GameTurn,
+  GameCellValue,
 };

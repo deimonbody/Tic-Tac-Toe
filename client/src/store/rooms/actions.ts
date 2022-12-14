@@ -22,7 +22,6 @@ export const updateRoomsList = createAction(
   RoomActions.UPDATE_ROOMS_LIST,
   (data) => {
     const { rooms } = data;
-    console.log(rooms);
     return { payload: rooms };
   },
 );

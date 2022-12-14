@@ -60,6 +60,8 @@ module.exports = {
         "@typescript-eslint/no-explicit-any":"off",
         "@typescript-eslint/no-unused-vars":"error",
         "no-param-reassign":"off",
+        "no-useless-return":"off",
+        "no-nested-ternary":"off"
     },
     "settings": {
         "import/resolver": {

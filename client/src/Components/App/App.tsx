@@ -5,7 +5,12 @@ import { GlobalStyles } from "@route/global";
 import { useAuth } from "@route/hooks/isAuth";
 import { useRoomGame } from "@route/hooks/isJoinedRoom";
 import { myTheme } from "@route/myTheme";
-import { joinedToRoom, userLeavedGame } from "@route/store/game/actions";
+import {
+  endGame,
+  joinedToRoom,
+  userLeavedGame,
+  userMakeActions,
+} from "@route/store/game/actions";
 import { useAppSelector } from "@route/store/hooks";
 import { addNewRoom, updateRoomsList } from "@route/store/rooms/actions";
 import React, { useEffect } from "react";
@@ -38,6 +43,12 @@ const App = () => {
       });
       socket.on("user-leaved-the-room", (data) => {
         dispatch(userLeavedGame(JSON.parse(data)));
+      });
+      socket.on("user-make-action", (data) => {
+        dispatch(userMakeActions(JSON.parse(data)));
+      });
+      socket.on("current-game-finished", () => {
+        dispatch(endGame());
       });
     }
   }, [auth]);

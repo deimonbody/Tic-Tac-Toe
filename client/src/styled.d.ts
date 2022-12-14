@@ -8,6 +8,8 @@ declare module "styled-components" {
       white: string;
       grayText: string;
       purpleColor: string;
+      zeroColor: string;
+      xColor: string;
     };
     fonts: {
       bold: string;

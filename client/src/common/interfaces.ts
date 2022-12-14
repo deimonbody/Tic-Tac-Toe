@@ -1,5 +1,5 @@
-import { RoomStatusEnum } from "./enum";
 import { Control } from "react-hook-form";
+import { RoomStatusEnum } from "./enum";
 
 export interface IFlexMixin {
   flexDirection?: "row" | "column";
@@ -61,8 +61,35 @@ export interface IRoom {
   status: RoomStatusEnum;
   users: IUserGame[];
   game: IGame[];
+  isGameEnded: boolean;
 }
 
 export interface IGame {
   action: IAction;
+}
+
+export interface ICell {
+  cellNum: number;
+  isBusy: boolean;
+  userRole: null | 0 | 1;
+}
+
+export interface ILastActionFromCurrentUser {
+  game: IGame[];
+  currentUserId: string;
+}
+
+export interface IGetAction {
+  game: IGame[];
+  currentUser: IUserGame;
+  cell: ICell;
+  users: IUserGame[];
+  roomId: string;
+}
+export interface IGameUserRole {
+  userRole: 0 | 1;
+}
+export interface IIsGameEndResult {
+  isEnd: boolean;
+  winner: null | 0 | 1;
 }

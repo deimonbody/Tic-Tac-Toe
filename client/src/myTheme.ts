@@ -8,6 +8,8 @@ const myTheme: DefaultTheme = {
     purpleColor: "#7b42f3",
     white: "#FFFFFF",
     grayText: "#C0BFBF",
+    zeroColor: "#426bf3",
+    xColor: "#f3425f",
   },
   fonts: {
     regular: "Montserrat-reg",
