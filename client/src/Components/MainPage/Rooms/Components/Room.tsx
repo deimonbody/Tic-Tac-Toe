@@ -1,6 +1,5 @@
 import React from "react";
 
-// import { socket } from "@route/common";
 import { RoomStatusEnum } from "@route/common/enum";
 import { IRoom } from "@route/common/interfaces";
 import {
@@ -24,11 +23,13 @@ const Room: React.FC<IProps> = ({ room }) => {
     <RoomWrapper>
       <RoomTitle>{room.title}</RoomTitle>
       <RoomStatus>
-        {room.status === RoomStatusEnum.WAITING
+        {room.status === RoomStatusEnum.END
+          ? "Game Finished"
+          : room.status === RoomStatusEnum.WAITING
           ? `Waiting users:${room.users.length}/2`
           : "Game has been started"}
       </RoomStatus>
-      <Button onClick={clickHanlder}>Join</Button>
+      {!room.isGameEnded && <Button onClick={clickHanlder}>Join</Button>}
     </RoomWrapper>
   );
 };

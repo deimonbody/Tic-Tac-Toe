@@ -19,7 +19,9 @@ import GameField from "./Components/GameField";
 
 export const Game = () => {
   const isJoinedToGame = useRoomGame();
-  const { title, users, roomId } = useAppSelector((store) => store.gameReducer);
+  const { title, users, roomId, isGameStarted } = useAppSelector(
+    (store) => store.gameReducer,
+  );
   const { user } = useAppSelector((store) => store.userReducer);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -36,16 +38,16 @@ export const Game = () => {
     <Wrapper>
       <GameHeader>
         <GameTitle>Room Name: {title}</GameTitle>
-        <Button onClick={leaveRoomHandler}>Leave Room</Button>
+        {!isGameStarted && (
+          <Button onClick={leaveRoomHandler}>Leave Room</Button>
+        )}
       </GameHeader>
       <GameHeader>
         <GameUser>{users[0]?.name || "Waiting for user..."}</GameUser>
         <Versus>VS</Versus>
         <GameUser>{users[1]?.name || "Waiting for user..."}</GameUser>
       </GameHeader>
-      <GameFieldWrapper>
-        <GameField />
-      </GameFieldWrapper>
+      <GameFieldWrapper>{isGameStarted && <GameField />}</GameFieldWrapper>
     </Wrapper>
   );
 };

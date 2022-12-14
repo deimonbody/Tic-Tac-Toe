@@ -23,3 +23,11 @@ export const userLeavedGame = createAction(
     return { payload: { room: room as IRoom } };
   },
 );
+export const userMakeActions = createAction(
+  GameActions.USER_MAKE_ACTION,
+  (data) => {
+    const { room } = data;
+    return { payload: { room: room as IRoom } };
+  },
+);
+export const endGame = createAction(GameActions.END_GAME);

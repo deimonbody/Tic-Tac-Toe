@@ -6,4 +6,5 @@ export enum PATHES {
 export enum RoomStatusEnum {
   WAITING = "Waiting",
   INPROCESS = "InProcess",
+  END = "GameEnd",
 }
