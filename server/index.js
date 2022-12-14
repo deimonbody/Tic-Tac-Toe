@@ -9,7 +9,7 @@ const io = socketIo(server);
 const uuidv4 = require('uuid').v4;
 
 let rooms = [];
-const users = [{
+let users = [{
     'name':"Dima",
     "email":"dima.pavlov0311@gmail.com",
     "password":"goldvju81",
@@ -41,19 +41,44 @@ app.get('/',(req,res)=>{
 app.post('/user',(req,res)=>{
     const {email,password} = req.body.data;
     const user = users.find((user)=>user.email === email);
-    if(user && user.password === password) {
-        return res.send({user});
-    }else{
-        res.status(400)
-        return res.send({
-            error:'User not valid email or password'
-        })
+    if(user){
+        if(user.isOnline) {
+            res.status(400)
+            return res.send({
+                error:'User already in online'
+            }) 
+        }
+        if(user.password === password) {
+            users = users.map((el)=>{
+                if(el.id === user.id){
+                    el.isOnline = true;
+                }
+                return el;
+            })
+            return res.send({user:{...user,isOnline:true}});
+        }else{
+            res.status(400)
+            return res.send({
+                error:'User not valid email or password'
+            })
+        }
     }
 })
 app.get("/rooms",(req,res)=>{
     res.send({rooms})
 })
 io.on('connection',(socket)=>{
+    socket.on("user-conected",(data)=>{
+        const { userID } = JSON.parse(data);
+        users = users.map((user)=>{
+            if(user.id === userID){
+                user.socketID = socket.id;
+                socket.emit("add-current-user-socket-id",JSON.stringify({socketID:user.socketID}))
+            }
+            return user;
+        })
+
+    })
     socket.on("create-new-room",(data)=>{
         const {user,roomName} = JSON.parse(data);
         const newRoom = {
@@ -73,7 +98,7 @@ io.on('connection',(socket)=>{
         socket.join(roomId);
         rooms = rooms.map((room)=>{
             if(room.id === roomId) {
-                // 0 - нолик 1-хрестик ,якщо останній юзер,який в цій кімнаті - нолик - тоді новий буде хрестиком,й навпаки
+                // 0 - nolic 1-kresitk ,if last user was nolic new will add as kresik and on the contrary
                 if(room.users.length){
                     const role = room.users[room.users.length-1].role === 0 ? 1 : 0; 
                     room.users.push({...user,role});
@@ -128,5 +153,28 @@ io.on('connection',(socket)=>{
             return room;
         })
         io.emit("update-room-list",JSON.stringify({rooms}));
+    })
+    socket.on('disconnect',()=>{
+        if(users.some((user)=>user.isOnline)){
+            const currentUser = users.find((user)=>user.socketID === socket.id);
+            users.map((user)=>{
+                if(user.id === currentUser.id){
+                    user.socketID = "";
+                    user.isOnline = false;
+                }
+            })
+            rooms = rooms.map((room)=>{
+                const findUserIndex = room?.users?.findIndex((user)=>user.id === currentUser.id);
+                
+                if(findUserIndex !== -1){ //user was in this room
+                    room.users.splice(findUserIndex,1);
+                    room.status = "Waiting",
+                    room.game = [];
+                    io.in(room.id).emit("user-disconected",JSON.stringify({room}));
+                }
+                return room;
+            })
+            io.emit("update-room-list",JSON.stringify({rooms}));
+        }   
     })
 })

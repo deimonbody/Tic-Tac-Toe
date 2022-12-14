@@ -29,7 +29,9 @@ const Room: React.FC<IProps> = ({ room }) => {
           ? `Waiting users:${room.users.length}/2`
           : "Game has been started"}
       </RoomStatus>
-      {!room.isGameEnded && <Button onClick={clickHanlder}>Join</Button>}
+      {!room.isGameEnded && room.status !== RoomStatusEnum.INPROCESS && (
+        <Button onClick={clickHanlder}>Join</Button>
+      )}
     </RoomWrapper>
   );
 };

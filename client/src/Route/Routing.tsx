@@ -8,10 +8,13 @@ import Login from "@route/Components/Login/Login";
 import { MainPage } from "@route/Components/MainPage/MainPage";
 import { useAuth } from "@route/hooks/isAuth";
 
+import { useRoomGame } from "@route/hooks/isJoinedRoom";
 import PrivateRouteHOC from "./PrivateRoute";
+import GameProtecteHOC from "./GameProtectedRoute";
 
 export const Routing = () => {
   const isAuth = useAuth();
+  const isHasRoom = useRoomGame();
   return (
     <Routes>
       <Route
@@ -23,7 +26,14 @@ export const Routing = () => {
         }
       />
       <Route path={PATHES.LOGIN} element={<Login />} />
-      <Route path={`${PATHES.ROOM}/:id`} element={<Game />} />
+      <Route
+        path={`${PATHES.ROOM}/:id`}
+        element={
+          <GameProtecteHOC isRoom={isHasRoom}>
+            <Game />
+          </GameProtecteHOC>
+        }
+      />
     </Routes>
   );
 };

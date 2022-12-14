@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "@route/store/hooks";
 import { loadRoomsAction, setRoomsLoading } from "@route/store/rooms/actions";
 
+import { socket } from "@route/common";
 import { Header, UserName, Wrapper } from "../Styled";
 import Control from "./Control/Control";
 
@@ -16,6 +17,9 @@ export const MainPage = () => {
   useEffect(() => {
     dispatch(setRoomsLoading());
     dispatch(loadRoomsAction());
+    if (!user.socketID && user.name) {
+      socket.emit("user-conected", JSON.stringify({ userID: user.id }));
+    }
   }, []);
   if (userLoading || roomsLoading) return <div>Loading...</div>;
   return (

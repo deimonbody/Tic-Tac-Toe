@@ -7,8 +7,10 @@ const initialState: IInitialState = {
   user: {
     name: null,
     password: null,
-    emai: null,
+    email: null,
     id: null,
+    isOnline: false,
+    socketID: null,
   },
   isLoading: false,
 };

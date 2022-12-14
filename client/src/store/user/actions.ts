@@ -16,3 +16,12 @@ export const setUser = createAsyncThunk(
 );
 
 export const setLoading = createAction(UserActions.SET_USER_LOADING);
+export const setUserSocketID = createAction(
+  UserActions.SET_USER_SOCKET_ID,
+  (data) => {
+    const { socketID } = data;
+    return {
+      payload: socketID,
+    };
+  },
+);

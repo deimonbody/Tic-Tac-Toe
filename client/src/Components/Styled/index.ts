@@ -28,6 +28,8 @@ import {
   Versus,
   GameTurn,
   GameCellValue,
+  UserRole,
+  GameUserBlock,
 } from "./Game";
 
 export {
@@ -60,4 +62,6 @@ export {
   GameFieldWrapper,
   GameTurn,
   GameCellValue,
+  UserRole,
+  GameUserBlock,
 };

@@ -31,3 +31,12 @@ export const userMakeActions = createAction(
   },
 );
 export const endGame = createAction(GameActions.END_GAME);
+export const userDisconected = createAction(
+  GameActions.USER_DISCONECTED,
+  (data) => {
+    const { room } = data;
+    return {
+      payload: { room: room as IRoom },
+    };
+  },
+);
