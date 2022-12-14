@@ -13,7 +13,7 @@
 * Axios
 * Joi
 * React-hook-form
-* Socket-IO
+* Socket.IO
 * React-Router
 
 📕Server:
