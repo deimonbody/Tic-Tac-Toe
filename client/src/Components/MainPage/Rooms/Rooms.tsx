@@ -1,6 +1,6 @@
 import React from "react";
 
-import { RoomsWraper } from "@route/Components/Styled";
+import { NothingHere, RoomsWraper } from "@route/Components/Styled";
 import { useAppSelector } from "@route/store/hooks";
 
 import Room from "./Components/Room";
@@ -9,7 +9,7 @@ const Rooms = () => {
   const { rooms } = useAppSelector((store) => store.roomsReducer);
   return (
     <RoomsWraper>
-      {!rooms.length && <p>There are no one rooms...</p>}
+      {!rooms.length && <NothingHere>There are no one rooms...</NothingHere>}
       {rooms.map((room) => (
         <Room room={room} key={room.id} />
       ))}

@@ -28,8 +28,6 @@ const App = () => {
     if (joinedRoom) navigate(`${PATHES.ROOM}/${roomId}`);
   }, [joinedRoom]);
 
-  useEffect(() => {}, []);
-
   return (
     <ThemeProvider theme={myTheme}>
       <GlobalStyles />

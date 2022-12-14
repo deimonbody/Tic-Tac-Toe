@@ -8,6 +8,7 @@ import { Header, UserName, Wrapper } from "../Styled";
 import Control from "./Control/Control";
 
 import Rooms from "./Rooms/Rooms";
+import { Loader } from "../Loader/Loader";
 
 export const MainPage = () => {
   const { user } = useAppSelector((store) => store.userReducer);
@@ -21,7 +22,7 @@ export const MainPage = () => {
       socket.emit("user-conected", JSON.stringify({ userID: user.id }));
     }
   }, []);
-  if (userLoading || roomsLoading) return <div>Loading...</div>;
+  if (userLoading || roomsLoading) return <Loader />;
   return (
     <Wrapper>
       <Header>

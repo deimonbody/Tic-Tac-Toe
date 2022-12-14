@@ -76,6 +76,7 @@ export const GameEnded = styled.p`
   padding: 50px 0;
   font-size: 1.3rem;
   font-family: ${(props) => props.theme.fonts.bold};
+  text-align: center;
 `;
 export const UserRole = styled.p<IGameUserRole>`
   padding-left: 15px;

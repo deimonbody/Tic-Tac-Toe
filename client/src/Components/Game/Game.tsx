@@ -20,6 +20,7 @@ import {
   Wrapper,
 } from "../Styled";
 import GameField from "./Components/GameField";
+import { Loader } from "../Loader/Loader";
 
 export const Game = () => {
   const isJoinedRoom = useRoomGame();
@@ -34,7 +35,7 @@ export const Game = () => {
     navigate(PATHES.MAIN_PAGE);
   };
   if (!isJoinedRoom) {
-    return <p>Loading...</p>;
+    return <Loader />;
   }
   return (
     <Wrapper>
@@ -45,27 +46,23 @@ export const Game = () => {
         )}
       </GameHeader>
       <GameHeader>
-        <GameUserBlock>
-          <GameUser>
-            {userNameStatus({ users, userIndex: 0, isGameEnded })}
-          </GameUser>
-          {users[0] && (
-            <UserRole userRole={users[0]?.role}>
-              {users[0] && users[0]?.role === 0 ? "0" : "X"}
-            </UserRole>
-          )}
-        </GameUserBlock>
-        <Versus>VS</Versus>
-        <GameUserBlock>
-          <GameUser>
-            {userNameStatus({ users, userIndex: 1, isGameEnded })}
-          </GameUser>
-          {users[1] && (
-            <UserRole userRole={users[1].role}>
-              {users[1].role === 0 ? "0" : "X"}
-            </UserRole>
-          )}
-        </GameUserBlock>
+        {[0, 1].map((index) => {
+          return (
+            <>
+              <GameUserBlock>
+                <GameUser>
+                  {userNameStatus({ users, userIndex: index, isGameEnded })}
+                </GameUser>
+                {users[index] && (
+                  <UserRole userRole={users[index]?.role}>
+                    {users[index] && users[index]?.role === 0 ? "0" : "X"}
+                  </UserRole>
+                )}
+              </GameUserBlock>
+              {index === 0 && <Versus>VS</Versus>}
+            </>
+          );
+        })}
       </GameHeader>
       <GameFieldWrapper>{isGameStarted && <GameField />}</GameFieldWrapper>
     </Wrapper>
