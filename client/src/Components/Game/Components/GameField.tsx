@@ -52,13 +52,13 @@ const GameField = () => {
     <>
       {gameEnd.isEnd ? (
         <GameEnded>
-          The game ended
-          <br /> Winner is: {gameEnd.winner === 0 ? "Nolick" : "Krestik"}
+          The game is ended
+          <br /> Winner is: {gameEnd.winner === 0 ? "Noughts" : "Crosses"}
         </GameEnded>
       ) : (
         <>
           <GameTurn userRole={turnRole}>
-            {turnRole === 0 ? "Nolick Turn" : "Krestik Turn"}
+            {turnRole === 0 ? "Noughts Turn" : "Crosses Turn"}
           </GameTurn>
           <GameFieldStyled>
             {gameField.map((cell) => {

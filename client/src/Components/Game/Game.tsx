@@ -6,22 +6,26 @@ import { useNavigate } from "react-router-dom";
 import { PATHES, socket } from "@route/common";
 import { useDispatch } from "react-redux";
 import { leaveGame } from "@route/store/game/actions";
+import { RoomStatusEnum } from "@route/common/enum";
+import { userNameStatus } from "@route/helper/game.helper";
 import {
   Button,
   GameFieldWrapper,
   GameHeader,
   GameTitle,
   GameUser,
+  GameUserBlock,
+  UserRole,
   Versus,
   Wrapper,
 } from "../Styled";
 import GameField from "./Components/GameField";
+import { Loader } from "../Loader/Loader";
 
 export const Game = () => {
-  const isJoinedToGame = useRoomGame();
-  const { title, users, roomId, isGameStarted } = useAppSelector(
-    (store) => store.gameReducer,
-  );
+  const isJoinedRoom = useRoomGame();
+  const { title, users, roomId, roomStatus, isGameStarted, isGameEnded } =
+    useAppSelector((store) => store.gameReducer);
   const { user } = useAppSelector((store) => store.userReducer);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -30,22 +34,35 @@ export const Game = () => {
     dispatch(leaveGame());
     navigate(PATHES.MAIN_PAGE);
   };
-  if (!isJoinedToGame) {
-    navigate(PATHES.MAIN_PAGE);
-    return null;
+  if (!isJoinedRoom) {
+    return <Loader />;
   }
   return (
     <Wrapper>
       <GameHeader>
         <GameTitle>Room Name: {title}</GameTitle>
-        {!isGameStarted && (
+        {roomStatus !== RoomStatusEnum.INPROCESS && (
           <Button onClick={leaveRoomHandler}>Leave Room</Button>
         )}
       </GameHeader>
       <GameHeader>
-        <GameUser>{users[0]?.name || "Waiting for user..."}</GameUser>
-        <Versus>VS</Versus>
-        <GameUser>{users[1]?.name || "Waiting for user..."}</GameUser>
+        {[0, 1].map((index) => {
+          return (
+            <>
+              <GameUserBlock>
+                <GameUser>
+                  {userNameStatus({ users, userIndex: index, isGameEnded })}
+                </GameUser>
+                {users[index] && (
+                  <UserRole userRole={users[index]?.role}>
+                    {users[index] && users[index]?.role === 0 ? "0" : "X"}
+                  </UserRole>
+                )}
+              </GameUserBlock>
+              {index === 0 && <Versus>VS</Versus>}
+            </>
+          );
+        })}
       </GameHeader>
       <GameFieldWrapper>{isGameStarted && <GameField />}</GameFieldWrapper>
     </Wrapper>

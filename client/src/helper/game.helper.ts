@@ -3,6 +3,7 @@ import {
   IGetAction,
   IIsGameEndResult,
   IGame,
+  IGetUserNameStatus,
 } from "@route/common/interfaces";
 import { v4 as uuidv4 } from "uuid";
 
@@ -87,4 +88,16 @@ export const isGameEnd = (game: IGame[]) => {
     }
   });
   return result;
+};
+
+export const userNameStatus = ({
+  isGameEnded,
+  users,
+  userIndex,
+}: IGetUserNameStatus) => {
+  if (isGameEnded && users[userIndex] === undefined) {
+    return "User Leaved The room";
+  }
+  if (users[userIndex] === undefined) return "Waiting for user...";
+  return users[userIndex].name;
 };

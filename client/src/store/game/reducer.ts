@@ -17,6 +17,7 @@ export const gameReducer = (
       state.users = [];
       state.title = "";
       state.gameField = standartGameField;
+      state.isGameEnded = false;
     })
     .addCase(gameActions.userMakeActions, (state, actions) => {
       const { game } = actions.payload.room;
@@ -30,6 +31,16 @@ export const gameReducer = (
     })
     .addCase(gameActions.endGame, (state) => {
       state.isGameEnded = true;
+      state.roomStatus = RoomStatusEnum.END;
+    })
+    .addCase(gameActions.userDisconected, (state, actions) => {
+      const { users } = actions.payload.room;
+      state.game = [];
+      state.gameField = standartGameField;
+      state.isGameEnded = false;
+      state.isGameStarted = false;
+      state.roomStatus = RoomStatusEnum.WAITING;
+      state.users = users;
     })
     .addMatcher(
       isAnyOf(gameActions.joinedToRoom, gameActions.userLeavedGame),
@@ -38,7 +49,9 @@ export const gameReducer = (
         state.roomId = room.id;
         state.game = room.game;
         state.roomStatus = room.status;
-        state.isGameStarted = room.users.length === 2;
+        if (!state.isGameEnded) {
+          state.isGameStarted = room.users.length === 2;
+        }
         state.users = room.users;
         state.title = room.title;
         state.isGameEnded = room.isGameEnded;

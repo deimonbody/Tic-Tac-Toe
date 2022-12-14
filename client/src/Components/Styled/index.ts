@@ -16,7 +16,7 @@ import {
   ModalWrapper,
 } from "./Modal";
 import { RoomStatus, RoomTitle, RoomWrapper } from "./Room";
-import { RoomsWraper } from "./Rooms";
+import { RoomsWraper, NothingHere } from "./Rooms";
 import { UserName } from "./UserName";
 import {
   GameBlock,
@@ -28,7 +28,10 @@ import {
   Versus,
   GameTurn,
   GameCellValue,
+  UserRole,
+  GameUserBlock,
 } from "./Game";
+import { LoaderBalls } from "./Loader";
 
 export {
   Button,
@@ -60,4 +63,8 @@ export {
   GameFieldWrapper,
   GameTurn,
   GameCellValue,
+  UserRole,
+  GameUserBlock,
+  LoaderBalls,
+  NothingHere,
 };

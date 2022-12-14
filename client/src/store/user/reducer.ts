@@ -12,5 +12,8 @@ export const userReducer = (
     })
     .addCase(userActions.setLoading, (state) => {
       state.isLoading = true;
+    })
+    .addCase(userActions.setUserSocketID, (state, actions) => {
+      state.user.socketID = actions.payload;
     });
 };

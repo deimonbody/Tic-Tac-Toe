@@ -7,3 +7,12 @@ export const RoomsWraper = styled.div`
   row-gap: 30px;
   column-gap: 30px;
 `;
+export const NothingHere = styled.div`
+  font-size: 1.3rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: ${(props) => props.theme.fonts.bold};
+  padding-top: 50px;
+`;

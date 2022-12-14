@@ -8,9 +8,11 @@ export interface IFlexMixin {
 }
 export interface IUser {
   name: string | null;
-  emai: string | null;
+  email: string | null;
   password: string | null;
   id: string | null;
+  isOnline: boolean;
+  socketID: null | string;
 }
 export interface IUserGame extends IUser {
   role: 0 | 1; // 0-нолик 1-хрестик
@@ -92,4 +94,10 @@ export interface IGameUserRole {
 export interface IIsGameEndResult {
   isEnd: boolean;
   winner: null | 0 | 1;
+}
+
+export interface IGetUserNameStatus {
+  isGameEnded: boolean;
+  users: IUserGame[];
+  userIndex: number;
 }

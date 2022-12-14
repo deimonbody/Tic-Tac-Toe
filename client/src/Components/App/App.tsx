@@ -1,24 +1,17 @@
 import { Routing } from "@route/Route/Routing";
 import { PATHES } from "@route/common";
-import { socket } from "@route/common/variables";
 import { GlobalStyles } from "@route/global";
 import { useAuth } from "@route/hooks/isAuth";
 import { useRoomGame } from "@route/hooks/isJoinedRoom";
 import { myTheme } from "@route/myTheme";
-import {
-  endGame,
-  joinedToRoom,
-  userLeavedGame,
-  userMakeActions,
-} from "@route/store/game/actions";
 import { useAppSelector } from "@route/store/hooks";
-import { addNewRoom, updateRoomsList } from "@route/store/rooms/actions";
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { ThemeProvider } from "styled-components";
+import { socketListener } from "@route/helper/socket.helper";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -28,36 +21,13 @@ const App = () => {
   const { roomId } = useAppSelector((store) => store.gameReducer);
 
   useEffect(() => {
-    if (auth) {
-      socket.on("add-new-room", (data) => {
-        dispatch(addNewRoom(JSON.parse(data)));
-      });
-      socket.on("current-user-joined-to-room", (data) => {
-        dispatch(joinedToRoom(JSON.parse(data)));
-      });
-      socket.on("new-user-joined-to-room", (data) => {
-        dispatch(joinedToRoom(JSON.parse(data)));
-      });
-      socket.on("update-room-list", (data) => {
-        dispatch(updateRoomsList(JSON.parse(data)));
-      });
-      socket.on("user-leaved-the-room", (data) => {
-        dispatch(userLeavedGame(JSON.parse(data)));
-      });
-      socket.on("user-make-action", (data) => {
-        dispatch(userMakeActions(JSON.parse(data)));
-      });
-      socket.on("current-game-finished", () => {
-        dispatch(endGame());
-      });
-    }
+    if (auth) socketListener(dispatch);
   }, [auth]);
 
   useEffect(() => {
-    if (joinedRoom) {
-      navigate(`${PATHES.ROOM}/${roomId}`);
-    }
+    if (joinedRoom) navigate(`${PATHES.ROOM}/${roomId}`);
   }, [joinedRoom]);
+
   return (
     <ThemeProvider theme={myTheme}>
       <GlobalStyles />
