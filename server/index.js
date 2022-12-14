@@ -54,7 +54,6 @@ app.get("/rooms",(req,res)=>{
     res.send({rooms})
 })
 io.on('connection',(socket)=>{
-    console.log('user connected',socket.id)
     socket.on("create-new-room",(data)=>{
         const {user,roomName} = JSON.parse(data);
         const newRoom = {
@@ -120,7 +119,6 @@ io.on('connection',(socket)=>{
     })
     socket.on("end-game",(data)=>{
         const {roomId} = JSON.parse(data);
-        console.log(roomId);
         rooms = rooms.map((room)=>{
             if(room.id === roomId){
                 room.isGameEnded = true;
