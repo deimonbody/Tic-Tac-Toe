@@ -98,7 +98,7 @@ io.on('connection',(socket)=>{
         socket.join(roomId);
         rooms = rooms.map((room)=>{
             if(room.id === roomId) {
-                // 0 - Noughts 1-Crosses ,if last user was nolic new will add as kresik and on the contrary
+                // 0 - Noughts 1-Crosses ,if last user was Noughts new will add as Crosses and on the contrary
                 if(room.users.length){
                     const role = room.users[room.users.length-1].role === 0 ? 1 : 0; 
                     room.users.push({...user,role});
