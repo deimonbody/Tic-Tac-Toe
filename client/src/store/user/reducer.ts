@@ -15,5 +15,9 @@ export const userReducer = (
     })
     .addCase(userActions.setUserSocketID, (state, actions) => {
       state.user.socketID = actions.payload;
+    })
+    .addCase(userActions.changeLanguage, (state, actions) => {
+      state.strings.setLanguage(actions.payload);
+      state.currentLanguage = actions.payload;
     });
 };

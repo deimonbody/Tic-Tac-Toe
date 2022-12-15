@@ -2,6 +2,7 @@ import React from "react";
 
 import { IButtonAction } from "@route/common/interfaces";
 
+import { useAppSelector } from "@route/store/hooks";
 import {
   Button,
   ModalContainer,
@@ -24,6 +25,7 @@ const Modal: React.FC<IProps> = ({
   buttonAction,
   body,
 }) => {
+  const { strings } = useAppSelector((store) => store.userReducer);
   if (!isOpen) return null;
   return (
     <ModalWrapper>
@@ -37,7 +39,7 @@ const Modal: React.FC<IProps> = ({
             </Button>
           ) : null}
           <Button onClick={onClose} style={{ marginLeft: "20px" }}>
-            Close
+            {strings.close}
           </Button>
         </ModalControl>
       </ModalContainer>

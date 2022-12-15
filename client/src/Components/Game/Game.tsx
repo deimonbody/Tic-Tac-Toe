@@ -9,7 +9,6 @@ import { leaveGame } from "@route/store/game/actions";
 import { RoomStatusEnum } from "@route/common/enum";
 import { userNameStatus } from "@route/helper/game.helper";
 import {
-  Button,
   GameFieldWrapper,
   GameHeader,
   GameTitle,
@@ -21,12 +20,14 @@ import {
 } from "../Styled";
 import GameField from "./Components/GameField";
 import { Loader } from "../Loader/Loader";
+import { Languages } from "../Languages/Languages";
+import { LeaveRoomBtn, MainGameHeader } from "../Styled/Game";
 
 export const Game = () => {
   const isJoinedRoom = useRoomGame();
   const { title, users, roomId, roomStatus, isGameStarted, isGameEnded } =
     useAppSelector((store) => store.gameReducer);
-  const { user } = useAppSelector((store) => store.userReducer);
+  const { user, strings } = useAppSelector((store) => store.userReducer);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const leaveRoomHandler = () => {
@@ -39,19 +40,29 @@ export const Game = () => {
   }
   return (
     <Wrapper>
-      <GameHeader>
-        <GameTitle>Room Name: {title}</GameTitle>
+      <MainGameHeader>
+        <GameTitle>
+          {strings.roomName}: {title}
+        </GameTitle>
         {roomStatus !== RoomStatusEnum.INPROCESS && (
-          <Button onClick={leaveRoomHandler}>Leave Room</Button>
+          <LeaveRoomBtn onClick={leaveRoomHandler}>
+            {strings.leaveRoom}
+          </LeaveRoomBtn>
         )}
-      </GameHeader>
+        <Languages />
+      </MainGameHeader>
       <GameHeader>
         {[0, 1].map((index) => {
           return (
             <>
               <GameUserBlock>
                 <GameUser>
-                  {userNameStatus({ users, userIndex: index, isGameEnded })}
+                  {userNameStatus({
+                    users,
+                    userIndex: index,
+                    isGameEnded,
+                    strings,
+                  })}
                 </GameUser>
                 {users[index] && (
                   <UserRole userRole={users[index]?.role}>

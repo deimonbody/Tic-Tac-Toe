@@ -1,7 +1,22 @@
 import { IGameUserRole } from "@route/common/interfaces";
 import styled from "styled-components";
+import { Button } from "./Common/Button";
 import { flexMixin } from "./Common/mixins";
 
+export const MainGameHeader = styled.div`
+  ${flexMixin({
+    flexDirection: "row",
+    alignItems: "center",
+  })};
+  @media screen and (max-width: 768px) {
+    ${flexMixin({
+      flexDirection: "column",
+      alignItems: "center",
+      justifyContent: "center",
+    })};
+    padding-bottom: 50px;
+  }
+`;
 export const GameHeader = styled.div`
   ${flexMixin({
     flexDirection: "row",
@@ -16,12 +31,18 @@ export const GameUser = styled.p`
   font-size: 1.4rem;
   font-family: ${(props) => props.theme.fonts.medium};
   color: ${(props) => props.theme.colors.black};
+  @media screen and (max-width: 576px) {
+    font-size: 1.1rem;
+  }
 `;
 
 export const Versus = styled.p`
   font-size: 1.4rem;
   font-family: ${(props) => props.theme.fonts.bold};
   color: #f84242;
+  @media screen and (max-width: 576px) {
+    font-size: 1.1rem;
+  }
 `;
 
 export const GameTitle = styled.p`
@@ -29,6 +50,10 @@ export const GameTitle = styled.p`
   font-size: 1.4rem;
   font-family: ${(props) => props.theme.fonts.bold};
   color: ${(props) => props.theme.colors.black};
+  flex-grow: 1;
+  @media screen and (max-width: 576px) {
+    font-size: 1.1rem;
+  }
 `;
 export const GameFieldStyled = styled.div`
   padding: 50px 0;
@@ -86,4 +111,10 @@ export const UserRole = styled.p<IGameUserRole>`
     props.userRole === 0
       ? props.theme.colors.zeroColor
       : props.theme.colors.xColor};
+  @media screen and (max-width: 576px) {
+    font-size: 1rem;
+  }
+`;
+export const LeaveRoomBtn = styled(Button)`
+  margin-right: 20px;
 `;

@@ -7,9 +7,10 @@ import Room from "./Components/Room";
 
 const Rooms = () => {
   const { rooms } = useAppSelector((store) => store.roomsReducer);
+  const { strings } = useAppSelector((store) => store.userReducer);
   return (
     <RoomsWraper>
-      {!rooms.length && <NothingHere>There are no one rooms...</NothingHere>}
+      {!rooms.length && <NothingHere>{strings.noRooms}</NothingHere>}
       {rooms.map((room) => (
         <Room room={room} key={room.id} />
       ))}

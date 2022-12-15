@@ -168,7 +168,7 @@ io.on('connection',(socket)=>{
                 
                 if(findUserIndex !== -1){ //user was in this room
                     room.users.splice(findUserIndex,1);
-                    room.status = "Waiting",
+                    room.status = room.status === "GameEnd" ? room.status : "Waiting",
                     room.game = [];
                     io.in(room.id).emit("user-disconected",JSON.stringify({room}));
                 }

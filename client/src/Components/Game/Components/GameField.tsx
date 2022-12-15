@@ -15,7 +15,7 @@ const GameField = () => {
   const { gameField, game, roomId, users } = useAppSelector(
     (store) => store.gameReducer,
   );
-  const { user } = useAppSelector((store) => store.userReducer);
+  const { user, strings } = useAppSelector((store) => store.userReducer);
   const [turnRole, setTurnRole] = useState<0 | 1>(0);
   const [gameEnd, setIsGameEnd] = useState<IIsGameEndResult>({
     isEnd: false,
@@ -52,14 +52,14 @@ const GameField = () => {
     <>
       {gameEnd.isEnd ? (
         <GameEnded>
-          The game is ended
+          {strings.endGame}
           <br />
-          {getEndStatus(gameEnd)}
+          {getEndStatus(gameEnd, strings)}
         </GameEnded>
       ) : (
         <>
           <GameTurn userRole={turnRole}>
-            {turnRole === 0 ? "Noughts Turn" : "Crosses Turn"}
+            {turnRole === 0 ? strings.noughtsTurn : strings.crossTurn}
           </GameTurn>
           <GameFieldStyled>
             {gameField.map((cell) => {

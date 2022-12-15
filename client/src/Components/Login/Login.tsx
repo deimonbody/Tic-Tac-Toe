@@ -4,7 +4,7 @@ import { joiResolver } from "@hookform/resolvers/joi";
 import { loginSchema, PATHES } from "@route/common";
 import { ILoginFields } from "@route/common/interfaces";
 import { useAuth } from "@route/hooks/isAuth";
-import { useAppDispatch } from "@route/store/hooks";
+import { useAppDispatch, useAppSelector } from "@route/store/hooks";
 import { setUser } from "@route/store/user/actions";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
@@ -13,6 +13,7 @@ import { toast } from "react-toastify";
 import { Button, LoginInput, LoginTitle, LoginWrapper } from "../Styled";
 
 const Login = () => {
+  const { strings } = useAppSelector((store) => store.userReducer);
   const dispatch = useAppDispatch();
   const isAuth = useAuth();
   const navigate = useNavigate();
@@ -44,7 +45,7 @@ const Login = () => {
 
   return (
     <LoginWrapper>
-      <LoginTitle>Login</LoginTitle>
+      <LoginTitle>{strings.login}</LoginTitle>
       <LoginInput
         control={control}
         name="email"

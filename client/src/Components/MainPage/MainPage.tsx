@@ -9,12 +9,14 @@ import Control from "./Control/Control";
 
 import Rooms from "./Rooms/Rooms";
 import { Loader } from "../Loader/Loader";
+import { Languages } from "../Languages/Languages";
 
 export const MainPage = () => {
-  const { user } = useAppSelector((store) => store.userReducer);
+  const { user, strings } = useAppSelector((store) => store.userReducer);
   const userLoading = useAppSelector((store) => store.userReducer.isLoading);
   const roomsLoading = useAppSelector((store) => store.roomsReducer.isLoading);
   const dispatch = useAppDispatch();
+
   useEffect(() => {
     dispatch(setRoomsLoading());
     dispatch(loadRoomsAction());
@@ -22,12 +24,16 @@ export const MainPage = () => {
       socket.emit("user-conected", JSON.stringify({ userID: user.id }));
     }
   }, []);
+
   if (userLoading || roomsLoading) return <Loader />;
   return (
     <Wrapper>
       <Header>
-        <UserName>User: {user.name || "No Name"}</UserName>
+        <UserName>
+          {strings.user}: {user.name || "No Name"}
+        </UserName>
         <Control />
+        <Languages />
       </Header>
       <Rooms />
     </Wrapper>

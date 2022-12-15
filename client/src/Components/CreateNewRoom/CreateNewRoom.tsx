@@ -18,7 +18,7 @@ export const CreateNewRoom: React.FC<IProps> = ({ containerTarget }) => {
   const [isOpen, setIsOpen] = useState(false);
   const handleClose = () => setIsOpen(false);
   const handleOpen = () => setIsOpen(true);
-
+  const { strings } = useAppSelector((store) => store.userReducer);
   const { user } = useAppSelector((store) => store.userReducer);
   const { control, handleSubmit, reset } = useForm<ICRANewRoom>({
     mode: "onChange",
@@ -44,9 +44,9 @@ export const CreateNewRoom: React.FC<IProps> = ({ containerTarget }) => {
       <Modal
         onClose={handleClose}
         isOpen={isOpen}
-        text="Create New Room"
+        text={strings.createNewRoom}
         buttonAction={{
-          btnText: "Create",
+          btnText: `${strings.create}`,
           action: handleSubmit(createNewRoomHandler),
         }}
         body={
