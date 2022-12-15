@@ -158,7 +158,7 @@ io.on('connection',(socket)=>{
         if(users.some((user)=>user.isOnline)){
             const currentUser = users.find((user)=>user.socketID === socket.id);
             users.map((user)=>{
-                if(user.id === currentUser.id){
+                if(currentUser && user.id === currentUser.id){
                     user.socketID = "";
                     user.isOnline = false;
                 }
