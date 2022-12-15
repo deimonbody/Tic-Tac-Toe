@@ -4,6 +4,7 @@ import {
   IIsGameEndResult,
   IGame,
   IGetUserNameStatus,
+  ICell,
 } from "@route/common/interfaces";
 import { v4 as uuidv4 } from "uuid";
 
@@ -52,7 +53,7 @@ export const getAction = ({
   }
 };
 
-export const isGameEnd = (game: IGame[]) => {
+export const isGameEnd = (game: IGame[], gameField: ICell[]) => {
   const result: IIsGameEndResult = {
     isEnd: false,
     winner: null,
@@ -87,6 +88,10 @@ export const isGameEnd = (game: IGame[]) => {
       return;
     }
   });
+  // if no one winned and all cells are busied - it`s draw
+  if (!result.isEnd && gameField.every((cell) => cell.isBusy)) {
+    result.isEnd = true;
+  }
   return result;
 };
 
@@ -100,4 +105,14 @@ export const userNameStatus = ({
   }
   if (users[userIndex] === undefined) return "Waiting for user...";
   return users[userIndex].name;
+};
+
+export const getEndStatus = (result: IIsGameEndResult) => {
+  if (result.isEnd && !result.winner) {
+    return "It`s a draw";
+  }
+  if (result.winner === 0) {
+    return "Winner is:Noughts";
+  }
+  return "Winner is:Crosses";
 };

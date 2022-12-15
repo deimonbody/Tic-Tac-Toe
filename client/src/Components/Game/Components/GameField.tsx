@@ -7,7 +7,7 @@ import {
   GameCellValue,
 } from "@route/Components/Styled";
 import { GameEnded } from "@route/Components/Styled/Game";
-import { getAction, isGameEnd } from "@route/helper/game.helper";
+import { getAction, getEndStatus, isGameEnd } from "@route/helper/game.helper";
 import { useAppSelector } from "@route/store/hooks";
 import React, { useEffect, useState } from "react";
 
@@ -25,7 +25,7 @@ const GameField = () => {
   useEffect(() => {
     if (game.length) {
       setTurnRole(game[game.length - 1].action.userRole === 0 ? 1 : 0);
-      const resultOfAction = isGameEnd(game);
+      const resultOfAction = isGameEnd(game, gameField);
       if (resultOfAction.isEnd) {
         setIsGameEnd(resultOfAction);
         socket.emit("end-game", JSON.stringify({ roomId }));
@@ -53,7 +53,8 @@ const GameField = () => {
       {gameEnd.isEnd ? (
         <GameEnded>
           The game is ended
-          <br /> Winner is: {gameEnd.winner === 0 ? "Noughts" : "Crosses"}
+          <br />
+          {getEndStatus(gameEnd)}
         </GameEnded>
       ) : (
         <>
