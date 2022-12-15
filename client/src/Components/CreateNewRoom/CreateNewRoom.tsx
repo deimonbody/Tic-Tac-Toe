@@ -7,6 +7,7 @@ import { useAppSelector } from "@route/store/hooks";
 import { createPortal } from "react-dom";
 import { useForm } from "react-hook-form";
 
+import { useLanguage } from "@route/hooks/useLanguageChange";
 import CreateNewRoomBtn from "../MainPage/Control/Components/CreateNewRoomBtn";
 import Modal from "../Modal/Modal";
 import { CRAInput } from "../Styled";
@@ -18,7 +19,7 @@ export const CreateNewRoom: React.FC<IProps> = ({ containerTarget }) => {
   const [isOpen, setIsOpen] = useState(false);
   const handleClose = () => setIsOpen(false);
   const handleOpen = () => setIsOpen(true);
-  const { strings } = useAppSelector((store) => store.userReducer);
+  const strings = useLanguage();
   const { user } = useAppSelector((store) => store.userReducer);
   const { control, handleSubmit, reset } = useForm<ICRANewRoom>({
     mode: "onChange",
@@ -53,7 +54,7 @@ export const CreateNewRoom: React.FC<IProps> = ({ containerTarget }) => {
           <CRAInput
             control={control}
             name="name"
-            placeholder="Room name:"
+            placeholder={strings.inpRoomName}
             type="text"
           />
         }

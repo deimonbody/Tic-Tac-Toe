@@ -55,7 +55,7 @@ export const standartGameField = [
     userRole: null,
   },
 ];
-export const defaultSrings = new LocalizedStrings<ILanguagesString>({
+export const strings = new LocalizedStrings<ILanguagesString>({
   en: {
     login: "Login",
     user: "User",
@@ -79,6 +79,9 @@ export const defaultSrings = new LocalizedStrings<ILanguagesString>({
     gameFinished: "Game Finished",
     waitingUsers: "Waiting users:",
     gameStarted: "Game has been started",
+    inpEmail: "Email:",
+    inpPassword: "Password:",
+    inpRoomName: "Room:",
   },
   uk: {
     login: "Логін",
@@ -103,6 +106,9 @@ export const defaultSrings = new LocalizedStrings<ILanguagesString>({
     gameFinished: "Гра завершилась",
     waitingUsers: "Очікування на під'єднання:",
     gameStarted: "Гра розпочалася",
+    inpEmail: "Пошта:",
+    inpPassword: "Пароль:",
+    inpRoomName: "Кімната:",
   },
   spa: {
     login: "Acceso",
@@ -127,6 +133,9 @@ export const defaultSrings = new LocalizedStrings<ILanguagesString>({
     gameFinished: "Juego terminado",
     waitingUsers: "Usuarios en espera:",
     gameStarted: "El juego ha sido iniciado",
+    inpEmail: "Email:",
+    inpPassword: "Clave:",
+    inpRoomName: "Habitación:",
   },
 });
 

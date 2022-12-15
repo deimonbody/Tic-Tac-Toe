@@ -1,9 +1,9 @@
 import { Button } from "@route/Components/Styled/Common/Button";
-import { useAppSelector } from "@route/store/hooks";
+import { useLanguage } from "@route/hooks/useLanguageChange";
 import React from "react";
 
 const Logout = () => {
-  const { strings } = useAppSelector((store) => store.userReducer);
+  const strings = useLanguage();
   return <Button>{strings.logout}</Button>;
 };
 

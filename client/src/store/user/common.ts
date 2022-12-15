@@ -1,11 +1,9 @@
 import { LocalizationLanguagesEnum } from "@route/common/enum";
-import { ILanguagesString, IUser } from "@route/common/interfaces";
-import { LocalizedStrings } from "react-localization";
+import { IUser } from "@route/common/interfaces";
 
 export interface IInitialState {
   user: IUser;
   isLoading: boolean;
-  strings: LocalizedStrings<ILanguagesString>;
   currentLanguage: LocalizationLanguagesEnum;
 }
 

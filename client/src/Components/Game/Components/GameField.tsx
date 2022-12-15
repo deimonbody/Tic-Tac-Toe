@@ -8,6 +8,7 @@ import {
 } from "@route/Components/Styled";
 import { GameEnded } from "@route/Components/Styled/Game";
 import { getAction, getEndStatus, isGameEnd } from "@route/helper/game.helper";
+import { useLanguage } from "@route/hooks/useLanguageChange";
 import { useAppSelector } from "@route/store/hooks";
 import React, { useEffect, useState } from "react";
 
@@ -15,7 +16,8 @@ const GameField = () => {
   const { gameField, game, roomId, users } = useAppSelector(
     (store) => store.gameReducer,
   );
-  const { user, strings } = useAppSelector((store) => store.userReducer);
+  const { user } = useAppSelector((store) => store.userReducer);
+  const strings = useLanguage();
   const [turnRole, setTurnRole] = useState<0 | 1>(0);
   const [gameEnd, setIsGameEnd] = useState<IIsGameEndResult>({
     isEnd: false,

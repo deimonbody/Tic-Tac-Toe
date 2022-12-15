@@ -2,7 +2,7 @@ import React from "react";
 
 import { IButtonAction } from "@route/common/interfaces";
 
-import { useAppSelector } from "@route/store/hooks";
+import { useLanguage } from "@route/hooks/useLanguageChange";
 import {
   Button,
   ModalContainer,
@@ -25,7 +25,7 @@ const Modal: React.FC<IProps> = ({
   buttonAction,
   body,
 }) => {
-  const { strings } = useAppSelector((store) => store.userReducer);
+  const strings = useLanguage();
   if (!isOpen) return null;
   return (
     <ModalWrapper>

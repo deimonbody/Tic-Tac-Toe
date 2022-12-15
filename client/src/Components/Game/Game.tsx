@@ -8,6 +8,7 @@ import { useDispatch } from "react-redux";
 import { leaveGame } from "@route/store/game/actions";
 import { RoomStatusEnum } from "@route/common/enum";
 import { userNameStatus } from "@route/helper/game.helper";
+import { useLanguage } from "@route/hooks/useLanguageChange";
 import {
   GameFieldWrapper,
   GameHeader,
@@ -27,9 +28,10 @@ export const Game = () => {
   const isJoinedRoom = useRoomGame();
   const { title, users, roomId, roomStatus, isGameStarted, isGameEnded } =
     useAppSelector((store) => store.gameReducer);
-  const { user, strings } = useAppSelector((store) => store.userReducer);
+  const { user } = useAppSelector((store) => store.userReducer);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const strings = useLanguage();
   const leaveRoomHandler = () => {
     socket.emit("leave-room", JSON.stringify({ roomId, user }));
     dispatch(leaveGame());

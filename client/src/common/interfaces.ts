@@ -127,4 +127,7 @@ export interface ILanguagesString {
   gameFinished: string;
   waitingUsers: string;
   gameStarted: string;
+  inpEmail: string;
+  inpPassword: string;
+  inpRoomName: string;
 }

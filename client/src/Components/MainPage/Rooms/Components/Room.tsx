@@ -10,12 +10,14 @@ import {
 } from "@route/Components/Styled";
 import { socket } from "@route/common";
 import { useAppSelector } from "@route/store/hooks";
+import { useLanguage } from "@route/hooks/useLanguageChange";
 
 interface IProps {
   room: IRoom;
 }
 const Room: React.FC<IProps> = ({ room }) => {
-  const { user, strings } = useAppSelector((store) => store.userReducer);
+  const { user } = useAppSelector((store) => store.userReducer);
+  const strings = useLanguage();
   const clickHanlder = () => {
     socket.emit("join-to-room", JSON.stringify({ roomId: room.id, user }));
   };
