@@ -1,7 +1,8 @@
 import LocalizedStrings from "react-localization";
 import { io } from "socket.io-client";
-import Spanish from "../images/spa.png";
+
 import Britain from "../images/en.png";
+import Spanish from "../images/spa.png";
 import Ukraine from "../images/uk.png";
 import { LocalizationLanguagesEnum } from "./enum";
 import { ILanguagesString } from "./interfaces";
@@ -82,6 +83,7 @@ export const strings = new LocalizedStrings<ILanguagesString>({
     inpEmail: "Email:",
     inpPassword: "Password:",
     inpRoomName: "Room:",
+    noName: "No name",
   },
   uk: {
     login: "Логін",
@@ -109,6 +111,7 @@ export const strings = new LocalizedStrings<ILanguagesString>({
     inpEmail: "Пошта:",
     inpPassword: "Пароль:",
     inpRoomName: "Кімната:",
+    noName: "Невідомий",
   },
   spa: {
     login: "Acceso",
@@ -136,6 +139,7 @@ export const strings = new LocalizedStrings<ILanguagesString>({
     inpEmail: "Email:",
     inpPassword: "Clave:",
     inpRoomName: "Habitación:",
+    noName: "Sin nombre",
   },
 });
 

@@ -1,10 +1,11 @@
-import styled from "styled-components";
+import { ICRAInput } from "@src/common/interfaces";
 import React from "react";
 import { Controller } from "react-hook-form";
-import { ICRAInput } from "@route/common/interfaces";
+import styled from "styled-components";
+
+import { Button } from "./Common/Button";
 import { flexMixin } from "./Common/mixins";
 import { LoginInputStyled } from "./Login";
-import { Button } from "./Common/Button";
 
 export const ControlWrapper = styled.div`
   ${flexMixin({ flexDirection: "row", alignItems: "center" })};

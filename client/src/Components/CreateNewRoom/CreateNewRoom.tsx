@@ -1,13 +1,12 @@
-import React, { useState } from "react";
-
 import { joiResolver } from "@hookform/resolvers/joi";
-import { createNewRoomSchema, socket } from "@route/common";
-import { ICRANewRoom } from "@route/common/interfaces";
-import { useAppSelector } from "@route/store/hooks";
+import { createNewRoomSchema, socket } from "@src/common";
+import { ICRANewRoom } from "@src/common/interfaces";
+import { useLanguage } from "@src/hooks/useLanguageChange";
+import { useAppSelector } from "@src/store/hooks";
+import React, { useState } from "react";
 import { createPortal } from "react-dom";
 import { useForm } from "react-hook-form";
 
-import { useLanguage } from "@route/hooks/useLanguageChange";
 import CreateNewRoomBtn from "../MainPage/Control/Components/CreateNewRoomBtn";
 import Modal from "../Modal/Modal";
 import { CRAInput } from "../Styled";

@@ -1,16 +1,15 @@
-import React from "react";
-
-import { RoomStatusEnum } from "@route/common/enum";
-import { IRoom } from "@route/common/interfaces";
+import { socket } from "@src/common";
+import { RoomStatusEnum } from "@src/common/enum";
+import { IRoom } from "@src/common/interfaces";
 import {
   Button,
   RoomStatus,
   RoomTitle,
   RoomWrapper,
-} from "@route/Components/Styled";
-import { socket } from "@route/common";
-import { useAppSelector } from "@route/store/hooks";
-import { useLanguage } from "@route/hooks/useLanguageChange";
+} from "@src/Components/Styled";
+import { useLanguage } from "@src/hooks/useLanguageChange";
+import { useAppSelector } from "@src/store/hooks";
+import React from "react";
 
 interface IProps {
   room: IRoom;

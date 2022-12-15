@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { LocalizationLanguagesEnum } from "@route/common/enum";
+import { LocalizationLanguagesEnum } from "@src/common/enum";
+
 import { IInitialState } from "./common";
 import { userReducer } from "./reducer";
 

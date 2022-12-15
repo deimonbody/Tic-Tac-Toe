@@ -1,12 +1,12 @@
 import {
-  ILastActionFromCurrentUser,
-  IGetAction,
-  IIsGameEndResult,
-  IGame,
-  IGetUserNameStatus,
   ICell,
+  IGame,
+  IGetAction,
+  IGetUserNameStatus,
+  IIsGameEndResult,
   ILanguagesString,
-} from "@route/common/interfaces";
+  ILastActionFromCurrentUser,
+} from "@src/common/interfaces";
 import { LocalizedStrings } from "react-localization";
 import { v4 as uuidv4 } from "uuid";
 

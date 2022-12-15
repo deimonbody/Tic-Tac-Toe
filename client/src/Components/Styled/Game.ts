@@ -1,5 +1,6 @@
-import { IGameUserRole } from "@route/common/interfaces";
+import { IGameUserRole } from "@src/common/interfaces";
 import styled from "styled-components";
+
 import { Button } from "./Common/Button";
 import { flexMixin } from "./Common/mixins";
 

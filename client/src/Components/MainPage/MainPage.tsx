@@ -1,16 +1,14 @@
+import { socket } from "@src/common";
+import { useLanguage } from "@src/hooks/useLanguageChange";
+import { useAppDispatch, useAppSelector } from "@src/store/hooks";
+import { loadRoomsAction, setRoomsLoading } from "@src/store/rooms/actions";
 import React, { useEffect } from "react";
 
-import { useAppDispatch, useAppSelector } from "@route/store/hooks";
-import { loadRoomsAction, setRoomsLoading } from "@route/store/rooms/actions";
-
-import { socket } from "@route/common";
-import { useLanguage } from "@route/hooks/useLanguageChange";
+import { Languages } from "../Languages/Languages";
+import { Loader } from "../Loader/Loader";
 import { Header, UserName, Wrapper } from "../Styled";
 import Control from "./Control/Control";
-
 import Rooms from "./Rooms/Rooms";
-import { Loader } from "../Loader/Loader";
-import { Languages } from "../Languages/Languages";
 
 export const MainPage = () => {
   const { user } = useAppSelector((store) => store.userReducer);
@@ -32,7 +30,7 @@ export const MainPage = () => {
     <Wrapper>
       <Header>
         <UserName>
-          {strings.user}: {user.name || "No Name"}
+          {strings.user}: {user.name || strings.noName}
         </UserName>
         <Control />
         <Languages />

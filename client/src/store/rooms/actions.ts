@@ -1,5 +1,5 @@
 import { createAction, createAsyncThunk } from "@reduxjs/toolkit";
-import { loadRooms } from "@route/helper/api.helper";
+import { loadRooms } from "@src/helper/api.helper";
 
 import { RoomActions } from "./common";
 

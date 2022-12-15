@@ -2,7 +2,23 @@ import { Button } from "./Common/Button";
 import { flexMixin } from "./Common/mixins";
 import { Wrapper } from "./Common/Wrapper";
 import { ControlWrapper, CRAButton, CRAInput, CRAInputStyled } from "./Control";
+import { Countries, CountryLanguage } from "./Countries";
+import {
+  GameBlock,
+  GameCellValue,
+  GameFieldStyled,
+  GameFieldWrapper,
+  GameHeader,
+  GameTitle,
+  GameTurn,
+  GameUser,
+  GameUserBlock,
+  MainGameHeader,
+  UserRole,
+  Versus,
+} from "./Game";
 import { Header } from "./Header";
+import { LoaderBalls } from "./Loader";
 import {
   LoginInput,
   LoginInputStyled,
@@ -16,61 +32,45 @@ import {
   ModalWrapper,
 } from "./Modal";
 import { RoomStatus, RoomTitle, RoomWrapper } from "./Room";
-import { RoomsWraper, NothingHere } from "./Rooms";
+import { NothingHere, RoomsWraper } from "./Rooms";
 import { UserName } from "./UserName";
-import {
+
+export {
+  Button,
+  ControlWrapper,
+  Countries,
+  CountryLanguage,
+  CRAButton,
+  CRAInput,
+  CRAInputStyled,
+  flexMixin,
   GameBlock,
+  GameCellValue,
   GameFieldStyled,
   GameFieldWrapper,
   GameHeader,
   GameTitle,
-  GameUser,
-  Versus,
   GameTurn,
-  GameCellValue,
-  UserRole,
+  GameUser,
   GameUserBlock,
-  MainGameHeader,
-} from "./Game";
-import { LoaderBalls } from "./Loader";
-import { Countries, CountryLanguage } from "./Countries";
-
-export {
-  Button,
-  flexMixin,
-  Wrapper,
-  ControlWrapper,
-  CRAInput,
-  CRAInputStyled,
   Header,
+  LoaderBalls,
   LoginInput,
   LoginInputStyled,
   LoginTitle,
   LoginWrapper,
+  MainGameHeader,
   ModalContainer,
   ModalControl,
   ModalTitle,
   ModalWrapper,
+  NothingHere,
   RoomStatus,
+  RoomsWraper,
   RoomTitle,
   RoomWrapper,
-  RoomsWraper,
   UserName,
-  GameHeader,
-  GameUser,
-  Versus,
-  GameTitle,
-  GameFieldStyled,
-  GameBlock,
-  GameFieldWrapper,
-  GameTurn,
-  GameCellValue,
   UserRole,
-  GameUserBlock,
-  LoaderBalls,
-  NothingHere,
-  Countries,
-  CountryLanguage,
-  CRAButton,
-  MainGameHeader,
+  Versus,
+  Wrapper,
 };

@@ -1,8 +1,10 @@
 /* eslint-disable */
 const {CracoAliasPlugin, configPaths} = require('react-app-rewire-alias')
 
-const aliasMap = configPaths('./tsconfig.pathes.json')
-
+const aliasMap = {
+  '@src': './src',
+}
+console.log(aliasMap);
 module.exports = {
   plugins: [
     {

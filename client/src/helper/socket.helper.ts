@@ -1,14 +1,14 @@
 import { AnyAction, Dispatch } from "@reduxjs/toolkit";
-import { socket } from "@route/common";
+import { socket } from "@src/common";
 import {
   endGame,
   joinedToRoom,
   userDisconected,
   userLeavedGame,
   userMakeActions,
-} from "@route/store/game/actions";
-import { addNewRoom, updateRoomsList } from "@route/store/rooms/actions";
-import { setUserSocketID } from "@route/store/user/actions";
+} from "@src/store/game/actions";
+import { addNewRoom, updateRoomsList } from "@src/store/rooms/actions";
+import { setUserSocketID } from "@src/store/user/actions";
 
 export const socketListener = (dispatch: Dispatch<AnyAction>) => {
   socket.on("add-new-room", (data) => {

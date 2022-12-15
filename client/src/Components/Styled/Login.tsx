@@ -1,7 +1,8 @@
-import styled from "styled-components";
-import { Controller } from "react-hook-form";
+import { ILoginInput } from "@src/common/interfaces";
 import React from "react";
-import { ILoginInput } from "@route/common/interfaces";
+import { Controller } from "react-hook-form";
+import styled from "styled-components";
+
 import { flexMixin } from "./Common/mixins";
 
 export const LoginWrapper = styled.div`

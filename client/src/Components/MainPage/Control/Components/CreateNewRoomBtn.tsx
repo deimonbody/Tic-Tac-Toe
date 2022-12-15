@@ -1,5 +1,5 @@
-import { CRAButton } from "@route/Components/Styled";
-import { useLanguage } from "@route/hooks/useLanguageChange";
+import { CRAButton } from "@src/Components/Styled";
+import { useLanguage } from "@src/hooks/useLanguageChange";
 import React from "react";
 
 interface IProps {

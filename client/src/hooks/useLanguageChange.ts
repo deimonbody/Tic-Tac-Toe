@@ -1,5 +1,5 @@
-import { strings } from "@route/common/variables";
-import { useAppSelector } from "@route/store/hooks";
+import { strings } from "@src/common/variables";
+import { useAppSelector } from "@src/store/hooks";
 
 export const useLanguage = () => {
   const { currentLanguage } = useAppSelector((store) => store.userReducer);

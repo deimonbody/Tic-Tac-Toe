@@ -1,5 +1,5 @@
-import { Button } from "@route/Components/Styled/Common/Button";
-import { useLanguage } from "@route/hooks/useLanguageChange";
+import { Button } from "@src/Components/Styled/Common/Button";
+import { useLanguage } from "@src/hooks/useLanguageChange";
 import React from "react";
 
 const Logout = () => {

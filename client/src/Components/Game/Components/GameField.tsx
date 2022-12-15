@@ -1,15 +1,15 @@
-import { socket } from "@route/common";
-import { ICell, IIsGameEndResult, IUserGame } from "@route/common/interfaces";
+import { socket } from "@src/common";
+import { ICell, IIsGameEndResult, IUserGame } from "@src/common/interfaces";
 import {
   GameBlock,
+  GameCellValue,
   GameFieldStyled,
   GameTurn,
-  GameCellValue,
-} from "@route/Components/Styled";
-import { GameEnded } from "@route/Components/Styled/Game";
-import { getAction, getEndStatus, isGameEnd } from "@route/helper/game.helper";
-import { useLanguage } from "@route/hooks/useLanguageChange";
-import { useAppSelector } from "@route/store/hooks";
+} from "@src/Components/Styled";
+import { GameEnded } from "@src/Components/Styled/Game";
+import { getAction, getEndStatus, isGameEnd } from "@src/helper/game.helper";
+import { useLanguage } from "@src/hooks/useLanguageChange";
+import { useAppSelector } from "@src/store/hooks";
 import React, { useEffect, useState } from "react";
 
 const GameField = () => {

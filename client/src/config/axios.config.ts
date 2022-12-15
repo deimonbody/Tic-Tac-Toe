@@ -1,4 +1,4 @@
-import { BASE_URL } from "@route/common/variables";
+import { BASE_URL } from "@src/common/variables";
 import axios, { CreateAxiosDefaults } from "axios";
 
 export const axiosConfig = {

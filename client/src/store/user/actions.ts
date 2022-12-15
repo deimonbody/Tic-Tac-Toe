@@ -1,6 +1,6 @@
 import { createAction, createAsyncThunk } from "@reduxjs/toolkit";
-import { LocalizationLanguagesEnum } from "@route/common/enum";
-import { loginUser } from "@route/helper/api.helper";
+import { LocalizationLanguagesEnum } from "@src/common/enum";
+import { loginUser } from "@src/helper/api.helper";
 
 import { ISetUserProps, UserActions } from "./common";
 

@@ -1,5 +1,6 @@
 import { Control } from "react-hook-form";
 import { LocalizedStrings } from "react-localization";
+
 import { RoomStatusEnum } from "./enum";
 
 export interface IFlexMixin {
@@ -130,4 +131,5 @@ export interface ILanguagesString {
   inpEmail: string;
   inpPassword: string;
   inpRoomName: string;
+  noName: string;
 }

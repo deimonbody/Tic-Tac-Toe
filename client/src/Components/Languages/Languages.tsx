@@ -1,8 +1,9 @@
-import { LocalizationLanguagesEnum } from "@route/common/enum";
-import { languages } from "@route/common/variables";
-import { useAppDispatch } from "@route/store/hooks";
-import { changeLanguage } from "@route/store/user/actions";
+import { LocalizationLanguagesEnum } from "@src/common/enum";
+import { languages } from "@src/common/variables";
+import { useAppDispatch } from "@src/store/hooks";
+import { changeLanguage } from "@src/store/user/actions";
 import React from "react";
+
 import { Countries, CountryLanguage } from "../Styled";
 
 export const Languages = () => {

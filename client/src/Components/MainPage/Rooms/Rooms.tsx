@@ -1,9 +1,8 @@
+import { NothingHere, RoomsWraper } from "@src/Components/Styled";
+import { useLanguage } from "@src/hooks/useLanguageChange";
+import { useAppSelector } from "@src/store/hooks";
 import React from "react";
 
-import { NothingHere, RoomsWraper } from "@route/Components/Styled";
-import { useAppSelector } from "@route/store/hooks";
-
-import { useLanguage } from "@route/hooks/useLanguageChange";
 import Room from "./Components/Room";
 
 const Rooms = () => {

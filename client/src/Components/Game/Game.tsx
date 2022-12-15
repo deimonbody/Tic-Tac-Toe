@@ -1,14 +1,16 @@
+import { PATHES, socket } from "@src/common";
+import { RoomStatusEnum } from "@src/common/enum";
+import { userNameStatus } from "@src/helper/game.helper";
+import { useRoomGame } from "@src/hooks/isJoinedRoom";
+import { useLanguage } from "@src/hooks/useLanguageChange";
+import { leaveGame } from "@src/store/game/actions";
+import { useAppSelector } from "@src/store/hooks";
 import React from "react";
-
-import { useRoomGame } from "@route/hooks/isJoinedRoom";
-import { useAppSelector } from "@route/store/hooks";
-import { useNavigate } from "react-router-dom";
-import { PATHES, socket } from "@route/common";
 import { useDispatch } from "react-redux";
-import { leaveGame } from "@route/store/game/actions";
-import { RoomStatusEnum } from "@route/common/enum";
-import { userNameStatus } from "@route/helper/game.helper";
-import { useLanguage } from "@route/hooks/useLanguageChange";
+import { useNavigate } from "react-router-dom";
+
+import { Languages } from "../Languages/Languages";
+import { Loader } from "../Loader/Loader";
 import {
   GameFieldWrapper,
   GameHeader,
@@ -19,10 +21,8 @@ import {
   Versus,
   Wrapper,
 } from "../Styled";
-import GameField from "./Components/GameField";
-import { Loader } from "../Loader/Loader";
-import { Languages } from "../Languages/Languages";
 import { LeaveRoomBtn, MainGameHeader } from "../Styled/Game";
+import GameField from "./Components/GameField";
 
 export const Game = () => {
   const isJoinedRoom = useRoomGame();

@@ -1,16 +1,14 @@
+import { PATHES } from "@src/common/enum";
+import { Game } from "@src/Components/Game/Game";
+import Login from "@src/Components/Login/Login";
+import { MainPage } from "@src/Components/MainPage/MainPage";
+import { useAuth } from "@src/hooks/isAuth";
+import { useRoomGame } from "@src/hooks/isJoinedRoom";
 import React from "react";
-
 import { Route, Routes } from "react-router-dom";
 
-import { PATHES } from "@route/common/enum";
-import { Game } from "@route/Components/Game/Game";
-import Login from "@route/Components/Login/Login";
-import { MainPage } from "@route/Components/MainPage/MainPage";
-import { useAuth } from "@route/hooks/isAuth";
-
-import { useRoomGame } from "@route/hooks/isJoinedRoom";
-import PrivateRouteHOC from "./PrivateRoute";
 import GameProtecteHOC from "./GameProtectedRoute";
+import PrivateRouteHOC from "./PrivateRoute";
 
 export const Routing = () => {
   const isAuth = useAuth();

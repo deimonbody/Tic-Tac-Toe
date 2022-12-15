@@ -1,16 +1,15 @@
-import React, { useEffect } from "react";
-
 import { joiResolver } from "@hookform/resolvers/joi";
-import { loginSchema, PATHES } from "@route/common";
-import { ILoginFields } from "@route/common/interfaces";
-import { useAuth } from "@route/hooks/isAuth";
-import { useAppDispatch } from "@route/store/hooks";
-import { setUser } from "@route/store/user/actions";
+import { loginSchema, PATHES } from "@src/common";
+import { ILoginFields } from "@src/common/interfaces";
+import { useAuth } from "@src/hooks/isAuth";
+import { useLanguage } from "@src/hooks/useLanguageChange";
+import { useAppDispatch } from "@src/store/hooks";
+import { setUser } from "@src/store/user/actions";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
-import { useLanguage } from "@route/hooks/useLanguageChange";
 import { Button, LoginInput, LoginTitle, LoginWrapper } from "../Styled";
 
 const Login = () => {

@@ -1,5 +1,5 @@
-import { RoomStatusEnum } from "@route/common/enum";
-import { ICell, IGame, IUserGame } from "@route/common/interfaces";
+import { RoomStatusEnum } from "@src/common/enum";
+import { ICell, IGame, IUserGame } from "@src/common/interfaces";
 
 export interface IInitialState {
   roomId: string | null;

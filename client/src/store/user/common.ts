@@ -1,5 +1,5 @@
-import { LocalizationLanguagesEnum } from "@route/common/enum";
-import { IUser } from "@route/common/interfaces";
+import { LocalizationLanguagesEnum } from "@src/common/enum";
+import { IUser } from "@src/common/interfaces";
 
 export interface IInitialState {
   user: IUser;

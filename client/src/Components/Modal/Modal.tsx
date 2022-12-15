@@ -1,8 +1,7 @@
+import { IButtonAction } from "@src/common/interfaces";
+import { useLanguage } from "@src/hooks/useLanguageChange";
 import React from "react";
 
-import { IButtonAction } from "@route/common/interfaces";
-
-import { useLanguage } from "@route/hooks/useLanguageChange";
 import {
   Button,
   ModalContainer,
