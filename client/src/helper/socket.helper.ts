@@ -3,6 +3,7 @@ import { socket } from "@src/common";
 import {
   endGame,
   joinedToRoom,
+  restartCurrentGame,
   userDisconected,
   userLeavedGame,
   userMakeActions,
@@ -37,5 +38,8 @@ export const socketListener = (dispatch: Dispatch<AnyAction>) => {
   });
   socket.on("user-disconected", (data) => {
     dispatch(userDisconected(JSON.parse(data)));
+  });
+  socket.on("restart-current-game", () => {
+    dispatch(restartCurrentGame());
   });
 };

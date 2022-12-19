@@ -1,4 +1,5 @@
 import { socket } from "@src/common";
+import { RoomStatusEnum } from "@src/common/enum";
 import { ICell, IIsGameEndResult, IUserGame } from "@src/common/interfaces";
 import {
   GameBlock,
@@ -10,23 +11,28 @@ import { GameEnded } from "@src/Components/Styled/Game";
 import { getAction, getEndStatus, isGameEnd } from "@src/helper/game.helper";
 import { useLanguage } from "@src/hooks/useLanguageChange";
 import { useAppSelector } from "@src/store/hooks";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 
-const GameField = () => {
-  const { gameField, game, roomId, users } = useAppSelector(
-    (store) => store.gameReducer,
-  );
+interface IProps {
+  changeTurnRole: (role: 0 | 1) => void;
+  turnRole: 0 | 1;
+  setIsGameEnd: (result: IIsGameEndResult) => void;
+  gameEnd: IIsGameEndResult;
+}
+const GameField: React.FC<IProps> = ({
+  changeTurnRole,
+  turnRole,
+  setIsGameEnd,
+  gameEnd,
+}) => {
+  const { gameField, game, roomId, users, isGameEnded, roomStatus } =
+    useAppSelector((store) => store.gameReducer);
   const { user } = useAppSelector((store) => store.userReducer);
   const strings = useLanguage();
-  const [turnRole, setTurnRole] = useState<0 | 1>(0);
-  const [gameEnd, setIsGameEnd] = useState<IIsGameEndResult>({
-    isEnd: false,
-    winner: null,
-  });
 
   useEffect(() => {
     if (game.length) {
-      setTurnRole(game[game.length - 1].action.userRole === 0 ? 1 : 0);
+      changeTurnRole(game[game.length - 1].action.userRole === 0 ? 1 : 0);
       const resultOfAction = isGameEnd(game, gameField);
       if (resultOfAction.isEnd) {
         setIsGameEnd(resultOfAction);
@@ -35,8 +41,15 @@ const GameField = () => {
     }
   }, [game]);
 
+  useEffect(() => {
+    if (roomStatus === RoomStatusEnum.INPROCESS) {
+      setIsGameEnd({ isEnd: false, winner: null });
+      changeTurnRole(0);
+    }
+  }, [roomStatus]);
+
   const clickHanlder = (cell: ICell) => {
-    if (gameEnd.isEnd) return;
+    if (isGameEnded) return;
     const currentUser = users.find((el) => el.id === user.id) as IUserGame;
     const action = getAction({
       game,
@@ -52,7 +65,7 @@ const GameField = () => {
 
   return (
     <>
-      {gameEnd.isEnd ? (
+      {isGameEnded ? (
         <GameEnded>
           {strings.endGame}
           <br />

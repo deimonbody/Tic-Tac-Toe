@@ -39,3 +39,6 @@ export const userDisconected = createAction(
     };
   },
 );
+export const restartCurrentGame = createAction(
+  GameActions.RESTART_CURRENT_GAME,
+);

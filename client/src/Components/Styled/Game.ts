@@ -9,7 +9,7 @@ export const MainGameHeader = styled.div`
     flexDirection: "row",
     alignItems: "center",
   })};
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 992px) {
     ${flexMixin({
       flexDirection: "column",
       alignItems: "center",
@@ -118,4 +118,19 @@ export const UserRole = styled.p<IGameUserRole>`
 `;
 export const LeaveRoomBtn = styled(Button)`
   margin-right: 20px;
+  @media screen and (max-width: 992px) {
+    margin-right: 0;
+  }
+`;
+export const RestartGameBtn = styled(Button)`
+  margin-right: 20px;
+  @media screen and (max-width: 992px) {
+    margin: 20px 0;
+  }
+`;
+export const TimerStyled = styled.p`
+  color: ${(props) => props.theme.colors.grayText};
+  font-size: 0.9rem;
+  margin-left: 15px;
+  font-family: ${(props) => props.theme.fonts.medium};
 `;

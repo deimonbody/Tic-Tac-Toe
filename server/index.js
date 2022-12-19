@@ -127,9 +127,10 @@ io.on('connection',(socket)=>{
                     const findUserIndex = room.users.findIndex((roomUser)=>roomUser.id === user.id);
                     room.users.splice(findUserIndex,1);
                     room.game = [];
-                    if(!room.status === ROOM_STATUS.END){
+                    // if(!room.status === ROOM_STATUS.END){
                         room.status = ROOM_STATUS.WAITING;
-                    }
+                    // }
+                    room.isGameEnded = false;
                     io.in(roomId).emit("user-leaved-the-room",JSON.stringify({room}));
                 }
                 return room
@@ -174,8 +175,10 @@ io.on('connection',(socket)=>{
                 
                 if(findUserIndex !== -1){ //user was in this room
                     room.users.splice(findUserIndex,1);
-                    room.status = room.status === ROOM_STATUS.END ? room.status : ROOM_STATUS.WAITING,
+                    // room.status = room.status === ROOM_STATUS.END ? room.status : ROOM_STATUS.WAITING,
+                    room.status = ROOM_STATUS.WAITING;
                     room.game = [];
+                    room.isGameEnded = false;
                     io.in(room.id).emit("user-disconected",JSON.stringify({room}));
                 }
                 return room;
@@ -191,5 +194,18 @@ io.on('connection',(socket)=>{
             }
             return user;
         })
+    })
+    socket.on("restart-game",(data)=>{
+        const {roomId} = JSON.parse(data);
+        rooms = rooms.map((room)=>{
+            if(room.id === roomId){
+                room.status = ROOM_STATUS.INPROCESS;
+                room.game = [];
+                room.isGameEnded = false;
+                io.in(roomId).emit("restart-current-game")
+            }
+            return room;
+        })
+        io.emit("update-room-list",JSON.stringify({rooms}));
     })
 })
