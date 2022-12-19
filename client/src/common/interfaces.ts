@@ -132,4 +132,5 @@ export interface ILanguagesString {
   inpPassword: string;
   inpRoomName: string;
   noName: string;
+  restartGame: string;
 }

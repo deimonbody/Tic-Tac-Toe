@@ -92,6 +92,7 @@ export const strings = new LocalizedStrings<ILanguagesString>({
     inpPassword: "Password:",
     inpRoomName: "Room:",
     noName: "No name",
+    restartGame: "Restart Game",
   },
   uk: {
     login: "Логін",
@@ -120,6 +121,7 @@ export const strings = new LocalizedStrings<ILanguagesString>({
     inpPassword: "Пароль:",
     inpRoomName: "Кімната:",
     noName: "Невідомий",
+    restartGame: "Почати заново",
   },
   spa: {
     login: "Acceso",
@@ -148,6 +150,7 @@ export const strings = new LocalizedStrings<ILanguagesString>({
     inpPassword: "Clave:",
     inpRoomName: "Habitación:",
     noName: "Sin nombre",
+    restartGame: "Reinicia el juego",
   },
 });
 

@@ -14,6 +14,7 @@ import {
   GameUser,
   GameUserBlock,
   MainGameHeader,
+  RestartGameBtn,
   UserRole,
   Versus,
 } from "./Game";
@@ -65,6 +66,7 @@ export {
   ModalTitle,
   ModalWrapper,
   NothingHere,
+  RestartGameBtn,
   RoomStatus,
   RoomsWraper,
   RoomTitle,

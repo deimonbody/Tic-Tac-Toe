@@ -1,4 +1,4 @@
-import { ActionReducerMapBuilder, isAnyOf } from "@reduxjs/toolkit";
+import { ActionReducerMapBuilder } from "@reduxjs/toolkit";
 import { RoomStatusEnum } from "@src/common/enum";
 import { standartGameField } from "@src/common/variables";
 
@@ -42,19 +42,32 @@ export const gameReducer = (
       state.roomStatus = RoomStatusEnum.WAITING;
       state.users = users;
     })
-    .addMatcher(
-      isAnyOf(gameActions.joinedToRoom, gameActions.userLeavedGame),
-      (state, actions) => {
-        const { room } = actions.payload;
-        state.roomId = room.id;
-        state.game = room.game;
-        state.roomStatus = room.status;
-        if (!state.isGameEnded) {
-          state.isGameStarted = room.users.length === 2;
-        }
-        state.users = room.users;
-        state.title = room.title;
-        state.isGameEnded = room.isGameEnded;
-      },
-    );
+    .addCase(gameActions.userLeavedGame, (state, actions) => {
+      const { room } = actions.payload;
+      state.roomId = room.id;
+      state.game = room.game;
+      state.roomStatus = room.status;
+      state.isGameStarted = false;
+      state.users = room.users;
+      state.title = room.title;
+      state.isGameEnded = room.isGameEnded;
+      state.gameField = standartGameField;
+    })
+    .addCase(gameActions.joinedToRoom, (state, actions) => {
+      const { room } = actions.payload;
+      state.roomId = room.id;
+      state.game = room.game;
+      state.roomStatus = room.status;
+      state.isGameStarted = room.users.length === 2;
+      state.users = room.users;
+      state.title = room.title;
+      state.isGameEnded = room.isGameEnded;
+    })
+    .addCase(gameActions.restartCurrentGame, (state) => {
+      state.game = [];
+      state.gameField = standartGameField;
+      state.isGameEnded = false;
+      state.roomStatus = RoomStatusEnum.INPROCESS;
+      state.isGameStarted = true;
+    });
 };
