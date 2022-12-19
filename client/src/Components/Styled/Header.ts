@@ -1,13 +1,13 @@
 import styled from "styled-components";
+
 import { flexMixin } from "./Common/mixins";
 
 export const Header = styled.div`
   ${flexMixin({
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-between",
   })};
-  @media screen and (max-width: 576px) {
+  @media screen and (max-width: 768px) {
     ${flexMixin({
       flexDirection: "column",
       alignItems: "center",

@@ -1,8 +1,7 @@
+import { PATHES } from "@src/common/enum";
+import { useRightRoomID } from "@src/hooks/isRightRoomID";
 import React from "react";
 import { Navigate, useParams } from "react-router-dom";
-
-import { PATHES } from "@route/common/enum";
-import { useRightRoomID } from "@route/hooks/isRightRoomID";
 
 interface IProps {
   children: JSX.Element;

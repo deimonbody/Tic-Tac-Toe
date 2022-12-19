@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { LocalizationLanguagesEnum } from "@src/common/enum";
 
 import { IInitialState } from "./common";
 import { userReducer } from "./reducer";
@@ -13,6 +14,7 @@ const initialState: IInitialState = {
     socketID: null,
   },
   isLoading: false,
+  currentLanguage: LocalizationLanguagesEnum.ENGLISH,
 };
 
 const { reducer } = createSlice({

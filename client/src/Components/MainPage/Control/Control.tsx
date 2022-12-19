@@ -1,6 +1,7 @@
-import { CreateNewRoom } from "@route/Components/CreateNewRoom/CreateNewRoom";
-import { ControlWrapper } from "@route/Components/Styled/Control";
+import { CreateNewRoom } from "@src/Components/CreateNewRoom/CreateNewRoom";
+import { ControlWrapper } from "@src/Components/Styled/Control";
 import React, { useEffect, useRef, useState } from "react";
+
 import Logout from "./Components/Logout";
 
 const Control = () => {

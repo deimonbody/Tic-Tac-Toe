@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-
 import { joiResolver } from "@hookform/resolvers/joi";
-import { createNewRoomSchema, socket } from "@route/common";
-import { ICRANewRoom } from "@route/common/interfaces";
-import { useAppSelector } from "@route/store/hooks";
+import { createNewRoomSchema, socket } from "@src/common";
+import { ICRANewRoom } from "@src/common/interfaces";
+import { useLanguage } from "@src/hooks/useLanguageChange";
+import { useAppSelector } from "@src/store/hooks";
+import React, { useState } from "react";
 import { createPortal } from "react-dom";
 import { useForm } from "react-hook-form";
 
@@ -18,7 +18,7 @@ export const CreateNewRoom: React.FC<IProps> = ({ containerTarget }) => {
   const [isOpen, setIsOpen] = useState(false);
   const handleClose = () => setIsOpen(false);
   const handleOpen = () => setIsOpen(true);
-
+  const strings = useLanguage();
   const { user } = useAppSelector((store) => store.userReducer);
   const { control, handleSubmit, reset } = useForm<ICRANewRoom>({
     mode: "onChange",
@@ -44,16 +44,16 @@ export const CreateNewRoom: React.FC<IProps> = ({ containerTarget }) => {
       <Modal
         onClose={handleClose}
         isOpen={isOpen}
-        text="Create New Room"
+        text={strings.createNewRoom}
         buttonAction={{
-          btnText: "Create",
+          btnText: `${strings.create}`,
           action: handleSubmit(createNewRoomHandler),
         }}
         body={
           <CRAInput
             control={control}
             name="name"
-            placeholder="Room name:"
+            placeholder={strings.inpRoomName}
             type="text"
           />
         }

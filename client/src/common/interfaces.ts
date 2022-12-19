@@ -1,4 +1,6 @@
 import { Control } from "react-hook-form";
+import { LocalizedStrings } from "react-localization";
+
 import { RoomStatusEnum } from "./enum";
 
 export interface IFlexMixin {
@@ -100,4 +102,34 @@ export interface IGetUserNameStatus {
   isGameEnded: boolean;
   users: IUserGame[];
   userIndex: number;
+  strings: LocalizedStrings<ILanguagesString>;
+}
+
+export interface ILanguagesString {
+  login: string;
+  user: string;
+  createNewRoom: string;
+  logout: string;
+  enter: string;
+  noRooms: string;
+  close: string;
+  create: string;
+  roomName: string;
+  leaveRoom: string;
+  waitingForUser: string;
+  userLeavedRoom: string;
+  draw: string;
+  winnerIsNoughts: string;
+  winnerIsCross: string;
+  noughtsTurn: string;
+  crossTurn: string;
+  endGame: string;
+  join: string;
+  gameFinished: string;
+  waitingUsers: string;
+  gameStarted: string;
+  inpEmail: string;
+  inpPassword: string;
+  inpRoomName: string;
+  noName: string;
 }

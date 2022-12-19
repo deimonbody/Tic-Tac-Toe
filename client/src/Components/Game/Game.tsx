@@ -1,15 +1,17 @@
+import { PATHES, socket } from "@src/common";
+import { RoomStatusEnum } from "@src/common/enum";
+import { userNameStatus } from "@src/helper/game.helper";
+import { useRoomGame } from "@src/hooks/isJoinedRoom";
+import { useLanguage } from "@src/hooks/useLanguageChange";
+import { leaveGame } from "@src/store/game/actions";
+import { useAppSelector } from "@src/store/hooks";
 import React from "react";
-
-import { useRoomGame } from "@route/hooks/isJoinedRoom";
-import { useAppSelector } from "@route/store/hooks";
-import { useNavigate } from "react-router-dom";
-import { PATHES, socket } from "@route/common";
 import { useDispatch } from "react-redux";
-import { leaveGame } from "@route/store/game/actions";
-import { RoomStatusEnum } from "@route/common/enum";
-import { userNameStatus } from "@route/helper/game.helper";
+import { useNavigate } from "react-router-dom";
+
+import { Languages } from "../Languages/Languages";
+import { Loader } from "../Loader/Loader";
 import {
-  Button,
   GameFieldWrapper,
   GameHeader,
   GameTitle,
@@ -19,8 +21,8 @@ import {
   Versus,
   Wrapper,
 } from "../Styled";
+import { LeaveRoomBtn, MainGameHeader } from "../Styled/Game";
 import GameField from "./Components/GameField";
-import { Loader } from "../Loader/Loader";
 
 export const Game = () => {
   const isJoinedRoom = useRoomGame();
@@ -29,6 +31,7 @@ export const Game = () => {
   const { user } = useAppSelector((store) => store.userReducer);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const strings = useLanguage();
   const leaveRoomHandler = () => {
     socket.emit("leave-room", JSON.stringify({ roomId, user }));
     dispatch(leaveGame());
@@ -39,19 +42,29 @@ export const Game = () => {
   }
   return (
     <Wrapper>
-      <GameHeader>
-        <GameTitle>Room Name: {title}</GameTitle>
+      <MainGameHeader>
+        <GameTitle>
+          {strings.roomName}: {title}
+        </GameTitle>
         {roomStatus !== RoomStatusEnum.INPROCESS && (
-          <Button onClick={leaveRoomHandler}>Leave Room</Button>
+          <LeaveRoomBtn onClick={leaveRoomHandler}>
+            {strings.leaveRoom}
+          </LeaveRoomBtn>
         )}
-      </GameHeader>
+        <Languages />
+      </MainGameHeader>
       <GameHeader>
         {[0, 1].map((index) => {
           return (
             <>
               <GameUserBlock>
                 <GameUser>
-                  {userNameStatus({ users, userIndex: index, isGameEnded })}
+                  {userNameStatus({
+                    users,
+                    userIndex: index,
+                    isGameEnded,
+                    strings,
+                  })}
                 </GameUser>
                 {users[index] && (
                   <UserRole userRole={users[index]?.role}>

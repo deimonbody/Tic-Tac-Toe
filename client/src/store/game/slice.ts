@@ -1,7 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-
-import { RoomStatusEnum } from "@route/common/enum";
-import { standartGameField } from "@route/common/variables";
+import { RoomStatusEnum } from "@src/common/enum";
+import { standartGameField } from "@src/common/variables";
 
 import { IInitialState } from "./common";
 import { gameReducer } from "./reducer";

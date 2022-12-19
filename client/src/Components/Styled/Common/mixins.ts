@@ -1,4 +1,4 @@
-import { IFlexMixin } from "../../../common/interfaces";
+import { IFlexMixin } from "@src/common/interfaces";
 
 export const flexMixin = ({
   flexDirection = "row",
