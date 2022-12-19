@@ -182,4 +182,13 @@ io.on('connection',(socket)=>{
             io.emit("update-room-list",JSON.stringify({rooms}));
         }   
     })
+    socket.on('logout',(data)=>{
+        const {currentUser} = JSON.parse(data);
+        users = users.map((user)=>{
+            if(user.id === currentUser.id) {
+                user.isOnline = false;
+            }
+            return user;
+        })
+    })
 })

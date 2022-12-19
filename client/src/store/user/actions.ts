@@ -30,3 +30,4 @@ export const changeLanguage = createAction(
   UserActions.CHANGE_LANGUAGE,
   (code: LocalizationLanguagesEnum) => ({ payload: code }),
 );
+export const logoutUser = createAction(UserActions.LOGOUT_USER);

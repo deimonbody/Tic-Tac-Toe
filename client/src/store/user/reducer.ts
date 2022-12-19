@@ -1,4 +1,5 @@
 import { ActionReducerMapBuilder } from "@reduxjs/toolkit";
+import { standartUser } from "@src/common/variables";
 
 import * as userActions from "./actions";
 import { IInitialState } from "./common";
@@ -19,5 +20,9 @@ export const userReducer = (
     })
     .addCase(userActions.changeLanguage, (state, actions) => {
       state.currentLanguage = actions.payload;
+    })
+    .addCase(userActions.logoutUser, (state) => {
+      state.user = standartUser;
+      state.isLoading = false;
     });
 };

@@ -1,5 +1,6 @@
 import { ActionReducerMapBuilder } from "@reduxjs/toolkit";
 
+import { logoutUser } from "../user/actions";
 import * as roomsActions from "./actions";
 import { IInitialState } from "./common";
 
@@ -19,5 +20,9 @@ export const roomsReducer = (
     })
     .addCase(roomsActions.updateRoomsList, (state, actions) => {
       state.rooms = actions.payload;
+    })
+    .addCase(logoutUser, (state) => {
+      state.isLoading = false;
+      state.rooms = [];
     });
 };

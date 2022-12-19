@@ -56,6 +56,14 @@ export const standartGameField = [
     userRole: null,
   },
 ];
+export const standartUser = {
+  name: null,
+  password: null,
+  email: null,
+  id: null,
+  isOnline: false,
+  socketID: null,
+};
 export const strings = new LocalizedStrings<ILanguagesString>({
   en: {
     login: "Login",

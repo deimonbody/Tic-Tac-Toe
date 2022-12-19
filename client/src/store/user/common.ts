@@ -12,6 +12,7 @@ export enum UserActions {
   SET_USER_LOADING = "SET_USER_LOADING",
   SET_USER_SOCKET_ID = "SET_USER_SOCKET_ID",
   CHANGE_LANGUAGE = "CHANGE_LANGUAGE",
+  LOGOUT_USER = "LOGOUT_USER",
 }
 
 export interface ISetUserProps {
