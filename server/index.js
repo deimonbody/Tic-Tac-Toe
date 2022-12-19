@@ -162,11 +162,12 @@ io.on('connection',(socket)=>{
     socket.on('disconnect',()=>{
         if(users.some((user)=>user.isOnline)){
             const currentUser = users.find((user)=>user.socketID === socket.id);
-            users.map((user)=>{
+            users = users.map((user)=>{
                 if(currentUser && user.id === currentUser.id){
                     user.socketID = "";
                     user.isOnline = false;
                 }
+                return user;
             })
             rooms = rooms.map((room)=>{
                 const findUserIndex = room?.users?.findIndex((user)=>user.id === currentUser.id);
