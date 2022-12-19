@@ -1,10 +1,13 @@
 import {
-  ILastActionFromCurrentUser,
-  IGetAction,
-  IIsGameEndResult,
+  ICell,
   IGame,
+  IGetAction,
   IGetUserNameStatus,
-} from "@route/common/interfaces";
+  IIsGameEndResult,
+  ILanguagesString,
+  ILastActionFromCurrentUser,
+} from "@src/common/interfaces";
+import { LocalizedStrings } from "react-localization";
 import { v4 as uuidv4 } from "uuid";
 
 export const isLastActionFromCurrentUser = ({
@@ -52,7 +55,7 @@ export const getAction = ({
   }
 };
 
-export const isGameEnd = (game: IGame[]) => {
+export const isGameEnd = (game: IGame[], gameField: ICell[]) => {
   const result: IIsGameEndResult = {
     isEnd: false,
     winner: null,
@@ -87,6 +90,10 @@ export const isGameEnd = (game: IGame[]) => {
       return;
     }
   });
+  // if no one winned and all cells are busied - it`s draw
+  if (!result.isEnd && gameField.every((cell) => cell.isBusy)) {
+    result.isEnd = true;
+  }
   return result;
 };
 
@@ -94,10 +101,24 @@ export const userNameStatus = ({
   isGameEnded,
   users,
   userIndex,
+  strings,
 }: IGetUserNameStatus) => {
   if (isGameEnded && users[userIndex] === undefined) {
-    return "User Leaved The room";
+    return strings.userLeavedRoom;
   }
-  if (users[userIndex] === undefined) return "Waiting for user...";
+  if (users[userIndex] === undefined) return strings.waitingForUser;
   return users[userIndex].name;
+};
+
+export const getEndStatus = (
+  result: IIsGameEndResult,
+  strings: LocalizedStrings<ILanguagesString>,
+) => {
+  if (result.isEnd && result.winner === null) {
+    return strings.draw;
+  }
+  if (result.winner === 0) {
+    return strings.winnerIsNoughts;
+  }
+  return strings.winnerIsCross;
 };

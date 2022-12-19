@@ -1,6 +1,5 @@
 import { createAction } from "@reduxjs/toolkit";
-
-import { IRoom } from "@route/common/interfaces";
+import { IRoom } from "@src/common/interfaces";
 
 import { GameActions } from "./common";
 

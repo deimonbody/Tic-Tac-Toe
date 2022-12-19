@@ -11,7 +11,7 @@ module.exports = {
         "airbnb-typescript",
         "plugin:import/typescript",
         "plugin:prettier/recommended",
-        "react-app"
+        "react-app",
     ],
     "overrides": [
        
@@ -27,6 +27,7 @@ module.exports = {
         "react",
         "@typescript-eslint",
         "prettier",
+        "simple-import-sort"
     ],
     "rules": {
         "react/jsx-props-no-spreading": "off",
@@ -61,7 +62,9 @@ module.exports = {
         "@typescript-eslint/no-unused-vars":"error",
         "no-param-reassign":"off",
         "no-useless-return":"off",
-        "no-nested-ternary":"off"
+        "no-nested-ternary":"off",
+        "simple-import-sort/imports": "error",
+        "simple-import-sort/exports": "error",
     },
     "settings": {
         "import/resolver": {

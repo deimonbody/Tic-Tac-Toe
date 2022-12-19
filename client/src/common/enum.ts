@@ -8,3 +8,9 @@ export enum RoomStatusEnum {
   INPROCESS = "InProcess",
   END = "GameEnd",
 }
+
+export enum LocalizationLanguagesEnum {
+  SPANISH = "spa",
+  UKRAINE = "uk",
+  ENGLISH = "en",
+}

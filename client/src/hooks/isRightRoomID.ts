@@ -1,6 +1,6 @@
 import { useAppSelector } from "@src/store/hooks";
 
-export const useRoomGame = () => {
+export const useRightRoomID = (currentRoomID: string) => {
   const { roomId } = useAppSelector((store) => store.gameReducer);
-  return Boolean(roomId);
+  return !!roomId && roomId === currentRoomID;
 };

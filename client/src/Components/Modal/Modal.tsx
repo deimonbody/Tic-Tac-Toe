@@ -1,6 +1,6 @@
+import { IButtonAction } from "@src/common/interfaces";
+import { useLanguage } from "@src/hooks/useLanguageChange";
 import React from "react";
-
-import { IButtonAction } from "@route/common/interfaces";
 
 import {
   Button,
@@ -24,6 +24,7 @@ const Modal: React.FC<IProps> = ({
   buttonAction,
   body,
 }) => {
+  const strings = useLanguage();
   if (!isOpen) return null;
   return (
     <ModalWrapper>
@@ -37,7 +38,7 @@ const Modal: React.FC<IProps> = ({
             </Button>
           ) : null}
           <Button onClick={onClose} style={{ marginLeft: "20px" }}>
-            Close
+            {strings.close}
           </Button>
         </ModalControl>
       </ModalContainer>

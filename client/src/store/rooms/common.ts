@@ -1,4 +1,4 @@
-import { IRoom } from "@route/common/interfaces";
+import { IRoom } from "@src/common/interfaces";
 
 export interface IInitialState {
   rooms: IRoom[];

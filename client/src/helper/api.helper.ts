@@ -1,5 +1,5 @@
-import { ILoginUser, IRoom, IUser } from "@route/common/interfaces";
-import instance from "@route/config/axios.config";
+import { ILoginUser, IRoom, IUser } from "@src/common/interfaces";
+import instance from "@src/config/axios.config";
 
 export const loginUser = async ({
   email,

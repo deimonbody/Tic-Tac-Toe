@@ -1,5 +1,6 @@
 import { createAction, createAsyncThunk } from "@reduxjs/toolkit";
-import { loginUser } from "@route/helper/api.helper";
+import { LocalizationLanguagesEnum } from "@src/common/enum";
+import { loginUser } from "@src/helper/api.helper";
 
 import { ISetUserProps, UserActions } from "./common";
 
@@ -25,3 +26,8 @@ export const setUserSocketID = createAction(
     };
   },
 );
+export const changeLanguage = createAction(
+  UserActions.CHANGE_LANGUAGE,
+  (code: LocalizationLanguagesEnum) => ({ payload: code }),
+);
+export const logoutUser = createAction(UserActions.LOGOUT_USER);

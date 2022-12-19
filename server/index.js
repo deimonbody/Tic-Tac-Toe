@@ -8,6 +8,11 @@ const server = http.Server(app).listen(9999,()=>console.log('server has been sta
 const io = socketIo(server);
 const uuidv4 = require('uuid').v4;
 
+const ROOM_STATUS = {
+    WAITING: "Waiting",
+    INPROCESS: "InProcess",
+    END: "GameEnd"
+}
 let rooms = [];
 let users = [{
     'name':"Dima",
@@ -84,7 +89,7 @@ io.on('connection',(socket)=>{
         const newRoom = {
             id:uuidv4(),
             title: roomName,
-            status: 'Waiting',
+            status: ROOM_STATUS.WAITING,
             users: [{...user,role:0}],
             game: []
         };
@@ -106,7 +111,7 @@ io.on('connection',(socket)=>{
                     room.users.push({...user,role:0});
                 }
                 if(room.users.length === 2){
-                    room.status = 'InProcess';
+                    room.status = ROOM_STATUS.INPROCESS;
                 }
                 io.in(roomId).emit("new-user-joined-to-room",JSON.stringify({room}))
             }
@@ -122,8 +127,8 @@ io.on('connection',(socket)=>{
                     const findUserIndex = room.users.findIndex((roomUser)=>roomUser.id === user.id);
                     room.users.splice(findUserIndex,1);
                     room.game = [];
-                    if(!room.status === "GameEnd"){
-                        room.status = "Waiting";
+                    if(!room.status === ROOM_STATUS.END){
+                        room.status = ROOM_STATUS.WAITING;
                     }
                     io.in(roomId).emit("user-leaved-the-room",JSON.stringify({room}));
                 }
@@ -147,7 +152,7 @@ io.on('connection',(socket)=>{
         rooms = rooms.map((room)=>{
             if(room.id === roomId){
                 room.isGameEnded = true;
-                room.status = 'GameEnd'
+                room.status = ROOM_STATUS.END
             }
             io.in(roomId).emit("current-game-finished");
             return room;
@@ -157,18 +162,19 @@ io.on('connection',(socket)=>{
     socket.on('disconnect',()=>{
         if(users.some((user)=>user.isOnline)){
             const currentUser = users.find((user)=>user.socketID === socket.id);
-            users.map((user)=>{
-                if(user.id === currentUser.id){
+            users = users.map((user)=>{
+                if(currentUser && user.id === currentUser.id){
                     user.socketID = "";
                     user.isOnline = false;
                 }
+                return user;
             })
             rooms = rooms.map((room)=>{
                 const findUserIndex = room?.users?.findIndex((user)=>user.id === currentUser.id);
                 
                 if(findUserIndex !== -1){ //user was in this room
                     room.users.splice(findUserIndex,1);
-                    room.status = "Waiting",
+                    room.status = room.status === ROOM_STATUS.END ? room.status : ROOM_STATUS.WAITING,
                     room.game = [];
                     io.in(room.id).emit("user-disconected",JSON.stringify({room}));
                 }
@@ -176,5 +182,14 @@ io.on('connection',(socket)=>{
             })
             io.emit("update-room-list",JSON.stringify({rooms}));
         }   
+    })
+    socket.on('logout',(data)=>{
+        const {currentUser} = JSON.parse(data);
+        users = users.map((user)=>{
+            if(user.id === currentUser.id) {
+                user.isOnline = false;
+            }
+            return user;
+        })
     })
 })

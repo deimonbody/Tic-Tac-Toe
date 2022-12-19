@@ -1,15 +1,13 @@
-import { Button } from "@route/Components/Styled/Common/Button";
+import { CRAButton } from "@src/Components/Styled";
+import { useLanguage } from "@src/hooks/useLanguageChange";
 import React from "react";
 
 interface IProps {
   clickHandler: () => void;
 }
 const CreateNewRoomBtn: React.FC<IProps> = ({ clickHandler }) => {
-  return (
-    <Button onClick={clickHandler} style={{ marginRight: "20px", order: -1 }}>
-      Create New Room
-    </Button>
-  );
+  const strings = useLanguage();
+  return <CRAButton onClick={clickHandler}>{strings.createNewRoom}</CRAButton>;
 };
 
 export default CreateNewRoomBtn;

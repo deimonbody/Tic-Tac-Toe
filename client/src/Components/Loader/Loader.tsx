@@ -1,4 +1,5 @@
 import React from "react";
+
 import { LoaderBalls } from "../Styled";
 
 export const Loader = () => (

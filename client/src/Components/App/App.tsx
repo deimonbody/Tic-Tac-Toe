@@ -1,17 +1,18 @@
-import { Routing } from "@route/Route/Routing";
-import { PATHES } from "@route/common";
-import { GlobalStyles } from "@route/global";
-import { useAuth } from "@route/hooks/isAuth";
-import { useRoomGame } from "@route/hooks/isJoinedRoom";
-import { myTheme } from "@route/myTheme";
-import { useAppSelector } from "@route/store/hooks";
+import "react-toastify/dist/ReactToastify.css";
+
+import { PATHES } from "@src/common";
+import { GlobalStyles } from "@src/global";
+import { socketListener } from "@src/helper/socket.helper";
+import { useAuth } from "@src/hooks/isAuth";
+import { useRoomGame } from "@src/hooks/isJoinedRoom";
+import { myTheme } from "@src/myTheme";
+import { Routing } from "@src/Route/Routing";
+import { useAppSelector } from "@src/store/hooks";
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { ThemeProvider } from "styled-components";
-import { socketListener } from "@route/helper/socket.helper";
 
 const App = () => {
   const dispatch = useDispatch();

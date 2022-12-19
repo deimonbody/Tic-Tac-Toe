@@ -1,5 +1,5 @@
+import { IWrapper } from "@src/common/interfaces";
 import React from "react";
-import { IWrapper } from "@route/common/interfaces";
 import styled from "styled-components";
 
 const StyledWrapper = styled.div`
